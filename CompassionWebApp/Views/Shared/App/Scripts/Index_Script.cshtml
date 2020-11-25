@@ -1,0 +1,169 @@
+﻿
+@{
+    Layout = null;
+    List<CompassionWebApp.Controllers.App.MainController.actividadesGrafica> lstGrafica = (List<CompassionWebApp.Controllers.App.MainController.actividadesGrafica>)ViewBag.lstgrafica;
+
+}
+<script>
+    $(document).ready(function () {
+        var count = @lstGrafica.Count();
+
+        if (count > 0) {
+            initChart();
+        }
+       
+        
+    });
+
+
+    function slugify(str) {
+        var map = {
+            '-': ' ',
+            '-': '_',
+            'a': 'á|à|ã|â|À|Á|Ã|Â',
+            'e': 'é|è|ê|É|È|Ê',
+            'i': 'í|ì|î|Í|Ì|Î',
+            'o': 'ó|ò|ô|õ|Ó|Ò|Ô|Õ',
+            'u': 'ú|ù|û|ü|Ú|Ù|Û|Ü',
+            'c': 'ç|Ç',
+            'n': 'ñ|Ñ'
+        };
+
+        for (var pattern in map) {
+            str = str.replace(new RegExp(map[pattern], 'g'), pattern);
+        };
+
+        return str;
+    };
+
+    function initChart() {
+        var element = document.getElementById("kt_charts_widget_2_chart");
+
+        var data = @Html.Raw(ViewBag.data);
+        var datatotal = @Html.Raw(ViewBag.dataActTotal);
+        var datafinal = @Html.Raw(ViewBag.dataActFinal);
+   
+        let activities = [];
+        data.forEach(function (datas) {
+
+            var result = slugify(datas).match(/\b[\w']+(?:[^\w\n]+[\w']+){0,1}\b/g);         
+            activities.push(result);
+        });
+
+
+        if (!element) {
+            return;
+        }
+
+        var options = {
+            series: [{
+                name: 'Finalizadas',
+                data: datafinal
+            }, {
+                name: 'Total asignadas',
+                    data: datatotal
+            }],
+            chart: {
+                type: 'bar',
+                height: 350,
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: ['30%'],
+                    endingShape: 'rounded'
+                },
+            },
+            legend: {
+                show: false
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            xaxis: {
+                categories: activities,
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false
+                },
+                labels: {
+                    rotate: 0,
+                    style: {
+                        //colors: 'gray',
+                        fontSize: '12px',
+                        
+                        //fontFamily: KTApp.getSettings()['font-family']
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        //colors: KTApp.getSettings()['colors']['gray']['gray-500'],
+                        fontSize: '12px',
+                        //fontFamily: KTApp.getSettings()['font-family']
+                    }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            states: {
+                normal: {
+                    filter: {
+                        type: 'none',
+                        value: 0
+                    }
+                },
+                hover: {
+                    filter: {
+                        type: 'none',
+                        value: 0
+                    }
+                },
+                active: {
+                    allowMultipleDataPointsSelection: false,
+                    filter: {
+                        type: 'none',
+                        value: 0
+                    }
+                }
+            },
+            tooltip: {
+                style: {
+                    fontSize: '12px',
+                    //fontFamily: KTApp.getSettings()['font-family']
+                },
+                y: {
+                    formatter: function (val) {
+                        return "" + val + " actividades"
+                    }
+                }
+            },
+            colors: ['#21618C', '#E5E7E9'],
+            grid: {
+                //borderColor: KTApp.getSettings()['colors']['gray']['gray-200'],
+                strokeDashArray: 4,
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    }
+</script>
+   

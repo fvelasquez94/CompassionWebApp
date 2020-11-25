@@ -1,0 +1,142 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script>
+    $(document).ready(function () {
+        // basic
+        $('#actividadInscripcion').select2({
+            placeholder: "Seleccione Actividad"
+        });
+
+            table = $('#kt_datatable').DataTable({
+                responsive: false,
+
+                // DOM Layout settings
+                dom: `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+                "bPaginate": false,
+                "bLengthChange": false,
+
+                language: {
+                    'lengthMenu': 'Display _MENU_',
+                },
+
+                // Order settings
+                order: [[2, 'asc']],
+
+                headerCallback: function (thead, data, start, end, display) {
+                    thead.getElementsByTagName('th')[0].innerHTML = `
+                    <label class="checkbox checkbox-single">
+                        <input type="checkbox" value="" class="group-checkable"/>
+                        <span></span>
+                    </label>`;
+                },
+
+                columnDefs: [
+                    {
+                        targets: 0,
+                        width: '30px',
+                        className: 'dt-left',
+                        orderable: false,
+                        render: function (data, type, full, meta) {
+                            return `
+                        <label class="checkbox checkbox-single">
+                            <input type="checkbox" value="" class="checkable"/>
+                            <span></span>
+                        </label>`;
+                        },
+                    }
+                ],
+            });
+
+            $('#kt_subheader_search_form').keyup(function () {
+                table.search($(this).val()).draw();
+            })
+
+            table.on('change', '.group-checkable', function () {
+                var set = $(this).closest('table').find('td:first-child .checkable');
+                var checked = $(this).is(':checked');
+
+                $(set).each(function () {
+                    if (checked) {
+                        $(this).prop('checked', true);
+                        $(this).closest('tr').addClass('active');
+                    }
+                    else {
+                        $(this).prop('checked', false);
+                        $(this).closest('tr').removeClass('active');
+                    }
+                });
+            });
+
+            table.on('change', 'tbody tr .checkbox', function () {
+                $(this).parents('tr').toggleClass('active');
+            });
+       
+
+    });
+
+
+
+
+
+    function SaveData() {
+        var details = [];
+
+        $(table.$('input[type="checkbox"]').map(function () {
+            if ($(this).prop("checked")) {
+
+                var object = {
+                    "LocalBeneficiaryID": $(this).closest('tr').find('.localID').text().trim(),
+                    "AccountName": $(this).closest('tr').find('.accountname').text().trim(),
+                    "CDI": $(this).closest('tr').find('.cdi').text().trim()
+                }
+
+                details.push(object);
+                
+            } 
+        }));
+
+     
+
+          var flag = 0;
+        var idActividad = $("#actividadInscripcion").val();
+
+        if (idActividad == 0 || idActividad == "0" || idActividad==null) { flag = 1;}
+        if (details.length==0) { flag = 1;}
+
+
+        if (flag == 1) {
+            alert("Complete todos los campos");
+        } else {
+                $.ajax
+            ({
+                        url: '/Inscripciones/nuevaInscripcion',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    ID_actividad: idActividad,
+                    Detalles: details
+                }),
+                success: function (result) {
+                    if (result.mensaje == "success") {
+                        var url2 = '@Url.Action("Index", "Inscripciones")';
+                        window.location.href = url2;
+                    } else {
+                        alert("algo salio mal")
+                    }
+                },
+                error: function () {
+                    alert("algo salio mal..")
+                },
+                });
+        }
+
+    }
+    
+
+</script>

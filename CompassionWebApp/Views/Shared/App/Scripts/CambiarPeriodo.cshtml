@@ -1,0 +1,52 @@
+﻿@model CompassionWebApp.Models.Tb_Plantillas
+@{
+    Layout = null;
+    List<CompassionWebApp.Models.Tb_ActividadesDetalles> lstdetalles = (List<CompassionWebApp.Models.Tb_ActividadesDetalles>)ViewBag.lstDetalles;
+}
+
+<script>
+
+    $(document).ready(function () {
+       
+    });
+
+
+    function actualizarPeriodos () {
+
+        var flag = 0;
+        var fechainicial = $("#iniciodate").val();
+        var fechafinal = $("#findate").val();
+
+        if (fechainicial > fechafinal) { flag = 1;}
+
+        if (flag == 1) {
+            alert("Compruebe formato o validez de fechas");
+        } else {
+
+     
+            $.ajax
+                ({
+                    url: '/Configuracion/ActualizarPeriodo',
+                    type: 'POST',
+                    datatype: 'application/json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        fechainicial: fechainicial,
+                        fechafinal: fechafinal
+                    }),
+                    success: function (result) {
+                        if (result.mensaje == "success") {
+                            alert("Periodo actualizado exitosamente")
+                            window.location.reload(true);
+                        } else {
+                            alert("algo salio mal")
+                        }
+                    },
+                    error: function () {
+                        alert("algo salio mal..")
+                    },
+                });
+        }
+    }
+
+</script>

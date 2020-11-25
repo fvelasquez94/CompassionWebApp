@@ -1,0 +1,484 @@
+﻿@model CompassionWebApp.Models.Tb_Plantillas
+@{
+    Layout = null;
+    List<CompassionWebApp.Models.Tb_ActividadesDetalles> lstdetalles = (List<CompassionWebApp.Models.Tb_ActividadesDetalles>)ViewBag.lstDetalles;
+}
+
+<script>
+
+    $(document).ready(function () {
+                            // minimum setup
+        $('.touchspin').TouchSpin({
+            buttondown_class: 'btn btn-secondary',
+            buttonup_class: 'btn btn-secondary',
+
+            //min: 0,
+            //max: 100,
+            step: 0.05,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+        });
+                 // minimum setup
+        $('.touchspin2').TouchSpin({
+                buttondown_class: 'btn btn-secondary',
+                buttonup_class: 'btn btn-secondary',
+
+                //min: 0,
+                //max: 100,
+                step: 1,
+                decimals: 0,
+                boostat: 5,
+                maxboostedstep: 10,
+        });
+
+        $('.tagify').each(function (i, obj) {
+            var id = $(obj).attr('id');
+            var input = document.getElementById(id),
+                tagify = new Tagify(input);
+        });
+
+        $('.nouislider').each(function (i, obj) {
+            var id = $(obj).attr('id');
+            // init slider
+            var slider = document.getElementById(id);
+
+            noUiSlider.create(slider, {
+                start: [0, 100],
+                connect: true,
+                direction: 'ltr',
+                tooltips: [true, wNumb({ decimals: 0 })],
+                range: {
+                    'min': 0,
+                    'max': 100
+                },
+                format: {
+                    from: function (value) {
+                        return parseInt(value);
+                    },
+                    to: function (value) {
+                        return parseInt(value);
+                    }
+                }
+            });
+        });
+        
+    });
+
+
+    var count = 0;
+    count = @lstdetalles.Count();
+    function agregarControl1() {
+        count++;
+        var control = "";
+        control += '<div class="form-group control controldinamico rec1">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Caja de texto <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec1" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes1" placeholder="Descripcion de parametro" />';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+        control += ' <input type="text" class="form-control " />';
+        control += '<hr/> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+
+    }
+    function agregarControl2() {
+        count++;
+        var control = "";
+        control += ' <div class="form-group control controldinamico rec2">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Caja numerica <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec2" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes2" placeholder="Descripcion de parametro" />';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+        control += '<input type="text" class="form-control touchspin" value="0" />';
+        control += '<hr /> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+
+
+        // minimum setup
+        $('.touchspin').TouchSpin({
+            buttondown_class: 'btn btn-secondary',
+            buttonup_class: 'btn btn-secondary',
+
+            //min: 0,
+            //max: 100,
+            step: 0.05,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+        });
+
+
+    }
+    function agregarControl3() {
+        count++;
+
+        var control = "";
+        control += ' <div class="form-group control controldinamico rec3">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Caja numerica enteros <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec3" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes3" placeholder="Descripcion de parametro" />';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+        control += '<input type="text" class="form-control touchspin2" value="0" />';
+        control += '<hr /> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+
+
+
+
+        // minimum setup
+        $('.touchspin2').TouchSpin({
+            buttondown_class: 'btn btn-secondary',
+            buttonup_class: 'btn btn-secondary',
+
+            //min: 0,
+            //max: 100,
+            step: 1,
+            decimals: 0,
+            boostat: 5,
+            maxboostedstep: 10,
+        });
+    }
+    function agregarControl4() {
+
+        count++;
+
+        var control = "";
+
+        control += ' <div class="form-group control controldinamico rec4">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Calendario <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec4" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes4" placeholder="Descripcion de parametro" />';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+        control += '<input type="date" class="form-control" />';
+        control += '<hr /> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+    }
+    function agregarControl5() {
+        count++;
+        var control = "";
+
+        control += ' <div class="form-group control controldinamico rec5">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Lista <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec5" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes5" placeholder="Descripcion de parametro" /><br />';
+        control += '<input class="form-control tagify" id="tagif_' + count + '" placeholder="Digita tus opciones, luego presiona ENTER"/>';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+
+        control += '<select class="form-control">';
+        control += '<option value="0">Seleccione</option>';
+        control += '<option>Opcion 1</option>';
+        control += '<option>Opcion 2</option>';
+        control += '<option>Opcion n</option>';
+        control += ' </select>';
+        control += '<hr /> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+
+
+
+
+
+        var input = document.getElementById('tagif_' + count),
+            tagify = new Tagify(input);
+    }
+
+    function agregarControl6() {
+
+        count++;
+        var control = "";
+
+        control += ' <div class="form-group control controldinamico rec6">';
+        control += '<input type="hidden" value="' + count + '" class="order"/>';
+        control += '<p style="text-align:left;">Rango <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,' + count + ')" style="float:right;">Eliminar</button></p ><br>';
+        control += '<input type="text" class="form-control textrec6" placeholder="Nombre de parametro a mostrar" />';
+        control += '<input type="text" class="form-control textdes6" placeholder="Descripcion de parametro" />';
+        control += '<span class="form-text text-muted">Previsualizacion.</span>';
+        control += '<br /><br /><div id="rangslider_' + count + '" class="nouislider"></div >';
+        control += '<hr /> </div> ';
+
+
+        $("#contenedorDinamico").append(control);
+
+
+
+
+        // init slider
+        var slider = document.getElementById('rangslider_' + count);
+
+        noUiSlider.create(slider, {
+            start: [0, 100],
+            connect: true,
+            direction: 'ltr',
+            tooltips: [true, wNumb({ decimals: 0 })],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            format: {
+                from: function (value) {
+                    return parseInt(value);
+                },
+                to: function (value) {
+                    return parseInt(value);
+                }
+            }
+        });
+    }
+
+
+
+    function eliminarElemento(button, count) {
+        var object = $(button).parents('.controldinamico');
+        $(object).remove();
+
+        arrayTosave = arrayTosave.filter(function (obj) {
+            return obj.Row !== count;
+        });
+
+        console.log(arrayTosave);
+    }
+
+
+
+    function GuardarPlantilla() {
+        var arrayTosave = [];
+        var flag = 0;
+        var nombrePlantilla = $("#nombrePlantilla").val();
+        var descripcionplantilla = $("#descripcionPlantilla").val();
+        if (nombrePlantilla == "") { flag = 1; }
+        if (descripcionplantilla == "") { flag = 1; }
+        $('.controldinamico').each(function (i, obj) {
+
+
+
+            if ($(this).hasClass("rec1")) { //Elemento tipo Caja de Texto
+                var nombreparametro = this.querySelector('.textrec1');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes1');
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 1,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": "",
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+
+            }
+            if ($(this).hasClass("rec2")) { //Elemento numerico
+                var nombreparametro = this.querySelector('.textrec2');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes2');
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 2,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": "",
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+            }
+
+            if ($(this).hasClass("rec3")) { //Elemento numerico entero
+                var nombreparametro = this.querySelector('.textrec3');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes3');
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 3,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": "",
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+            }
+            if ($(this).hasClass("rec4")) { //Elemento calendario
+                var nombreparametro = this.querySelector('.textrec4');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes4');
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 4,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": "",
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+            }
+            if ($(this).hasClass("rec5")) { //Elemento lista
+                var nombreparametro = this.querySelector('.textrec5');
+                var tagslista = this.querySelector('.tagify');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes5');
+                var arrayTags = [];
+
+                $(tagslista).children('tag').each(function () {
+
+                    var valuetag = this.querySelector('.tagify__tag-text').innerHTML; // "this" is the current element in the loop
+                    arrayTags.push(valuetag);
+                });
+
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+                if (arrayTags.length > 0) { } else { flag = 1; }
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 5,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": arrayTags.join(),
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+            }
+            if ($(this).hasClass("rec6")) { //Elemento rango
+                var nombreparametro = this.querySelector('.textrec6');
+                var valororden = this.querySelector('.order');
+                var descripcionparametro = this.querySelector('.textdes6');
+
+                if ($(nombreparametro).val() == "") { flag = 1; }
+                if ($(descripcionparametro).val() == "") { flag = 1; }
+
+                //Agregamos a array
+                var regitem = {
+                    //"Row": $(valororden).val(),
+                    "ID_recurso": 6,
+                    "Parametro": $(nombreparametro).val(),
+                    "Descripcion": $(descripcionparametro).val(),
+                    "ValorTexto": "",
+                    "ValorNumerico": 0.0,
+                    "ValorEntero": 0,
+                    "ValorMultipleOpciones": "",
+                    "ValorMax": 0,
+                    "ValorMin": 0,
+                    "Original": true,
+                    "ID_actividadSecundaria": 0,
+                    "ID_actividadBeneficiario": 0,
+                    "ID_plantilla": 0,
+                    "Orden": $(valororden).val(),
+                }
+                arrayTosave.push(regitem);
+            }
+        });
+
+        console.log(arrayTosave);
+
+        if (flag == 1) {
+            toastr.info("Valida todos los campos");
+        } else {
+
+            var plantilla=@Model.ID_plantilla;
+            $.ajax
+                ({
+                    url: '/ActividadesDinamicas/GuardarPlantilla',
+                    type: 'POST',
+                    datatype: 'application/json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        detalles: arrayTosave,
+                        nombre: nombrePlantilla,
+                        descripcion: descripcionplantilla,
+                        id_plantilla: plantilla
+                    }),
+                    success: function (result) {
+                        if (result.mensaje == "success") {
+                            Swal.fire("Guardado exitoso!", "La plantilla fue guardada!", "success");
+                        } else {
+                            toastr.warning("Algo salio mal, intentalo nuevamente");
+                        }
+                    },
+                    error: function () {
+                        toastr.warning("Algo salio mal, intentalo nuevamente");
+                    },
+                });
+        }
+    }
+
+</script>

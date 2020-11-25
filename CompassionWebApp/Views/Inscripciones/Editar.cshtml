@@ -1,0 +1,287 @@
+﻿@model List<CompassionWebApp.Models.Tb_Beneficiarios>
+@{
+    ViewBag.Title = "Inscripcion - Editar";
+    CompassionWebApp.Models.Tb_Usuarios user = (CompassionWebApp.Models.Tb_Usuarios)ViewBag.usuario;
+    List<CompassionWebApp.Models.Tb_Beneficiarios> lstbeneficiarios = (List<CompassionWebApp.Models.Tb_Beneficiarios>)ViewBag.beneficiarios;
+    List<CompassionWebApp.Models.Tb_ActividadesSecundarias> actividades = (List<CompassionWebApp.Models.Tb_ActividadesSecundarias>)ViewBag.actividades;
+}
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="container">
+        <div class="col-md-12">
+            <!--begin::Notice-->
+            @if (user.CDI == "0")
+    {
+        <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+            <div class="alert-icon">
+                <span class="svg-icon svg-icon-danger svg-icon-2x">
+                    <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo5\dist/../src/media/svg/icons\Code\Warning-1-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24" />
+                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                            <rect fill="#000000" x="11" y="7" width="2" height="8" rx="1" />
+                            <rect fill="#000000" x="11" y="16" width="2" height="2" rx="1" />
+                        </g>
+                    </svg><!--end::Svg Icon-->
+                </span>
+            </div>
+
+            <div class="alert-text">
+                No hay datos disponibles debido a que no se ha configurado el CDI para este usuario.
+
+            </div>
+        
+
+        </div>
+            }
+        </div>
+    </div>
+    <!--begin::Subheader-->
+    <div class="subheader py-2 py-lg-4 subheader-transparent" id="kt_subheader">
+
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+
+            <!--begin::Details-->
+            <div class="d-flex align-items-center flex-wrap mr-2">
+
+                <!--end::Notice-->
+                <!--begin::Title-->
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Inscripciones</h5>
+
+                <!--end::Title-->
+
+
+            </div>
+            <!--end::Details-->
+            <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">@ViewBag.actividad</h5>
+        </div>
+    </div>
+    <!--end::Subheader-->
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Card-->
+            <div class="card card-custom">
+                <div class="card-header card-header-tabs-line">
+                    <div class="card-toolbar">
+                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_1_4">
+                                    <span class="nav-icon">
+                                        <i class="flaticon2-user"></i>
+                                    </span>
+                                    <span class="nav-text">Beneficiarios inscritos</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_2_4">
+                                    <span class="nav-icon">
+                                        <i class="flaticon2-add"></i>
+                                    </span>
+                                    <span class="nav-text">Agregar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="kt_tab_pane_1_4" role="tabpanel" aria-labelledby="kt_tab_pane_1_4">
+                            <!--begin::Header-->
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                                <div class="card-title">
+
+                                    Listado de Beneficiarios inscritos
+
+                                </div>
+                                <div class="input-group input-group-sm input-group-solid" style="max-width: 275px">
+                                    <input type="text" class="form-control" id="kt_subheader_search_form2" placeholder="Buscar..." />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <span class="svg-icon">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24" />
+                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                            <!--<i class="flaticon2-search-1 icon-sm"></i>-->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <!--begin: Datatable-->
+                                    <table class="table table-bordered table-checkable" id="kt_datatable2">
+                                        <thead>
+                                            <tr>
+                                         
+                                                <th>Código Beneficiario</th>
+                                                <th>Nombre completo</th>
+                                                <th>Código CDI</th>
+                                                <th>Género</th>
+                                                <th>Edad</th>
+                                                <th>Tutor / Implementador</th>
+                                                <th>Clase / CDPR Grupo de edad</th>
+                                                <th>Estado/Provincia</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Count > 0)
+                    {
+                        foreach (var items in Model)
+                        {
+                                            <tr>
+                                                
+                                                <td>@items.LocalBeneficiaryID</td>
+
+                                                <td>@items.AccountName</td>
+                                                <td>@items.BeneficiaryICPID</td>
+                                                <td>@items.Gender</td>
+                                                <td>@items.Age</td>
+                                                <td>@items.Tutor_ImplementerName</td>
+                                                <td>@items.Classroom_CDPRAgeGroup</td>
+                                                <td>@items.State_Province</td>
+                                                <td><a class="btn btn-sm btn-danger" href="#" onclick="eliminarBeneficario('@items.LocalBeneficiaryID',@ViewBag.Id_actividad)">Eliminar</a></td>
+
+                                            </tr>
+}
+}
+
+                                        </tbody>
+                                    </table>
+                                    <!--end: Datatable-->
+                                </div>
+
+                            </div>
+                            <!--end::Body-->
+
+                        </div>
+                        <div class="tab-pane fade" id="kt_tab_pane_2_4" role="tabpanel" aria-labelledby="kt_tab_pane_2_4">
+                            <!--begin::Header-->
+                           
+                            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+
+
+                                <div class="card-title">
+
+                                    Inscribir mas Beneficiarios
+
+                                </div>
+
+                                <div class="card-toolbar">
+                                    <!--begin::Dropdown-->
+                                    <a href="#" onclick="SaveData()" class="btn btn-light-success font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+
+                                        </span>Agregar beneficiarios seleccionados
+                                    </a>
+
+                                    <div class="dropdown dropdown-inline mr-2">
+
+
+                                        <!--end::Dropdown Menu-->
+                                    </div>
+                                    <!--end::Dropdown-->
+
+                                </div>
+
+                                <br /><br />
+
+                                <div class="input-group input-group-sm input-group-solid" style="max-width: 275px">
+                                    <input type="text" class="form-control" id="kt_subheader_search_form" placeholder="Buscar..." />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <span class="svg-icon">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24" />
+                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                            <!--<i class="flaticon2-search-1 icon-sm"></i>-->
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Body-->
+                            <div class="card-body">
+        
+                                <div class="table-responsive">
+                                    <!--begin: Datatable-->
+                                    <table class="table table-bordered table-checkable" id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Código Beneficiario</th>
+                                                <th>Nombre completo</th>
+                                                <th>Código CDI</th>
+                                                <th>Género</th>
+                                                <th>Edad</th>
+                                                <th>Tutor / Implementador</th>
+                                                <th>Clase / CDPR Grupo de edad</th>
+                                                <th>Estado/Provincia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (lstbeneficiarios.Count > 0)
+                    {
+                        foreach (var items in lstbeneficiarios)
+                        {
+                            <tr>
+                                <td></td>
+                                <td class="localID">@items.LocalBeneficiaryID</td>
+
+                                <td class="accountname">@items.AccountName</td>
+                                <td class="cdi">@items.BeneficiaryICPID</td>
+
+                                <td>@items.Gender</td>
+                                <td>@items.Age</td>
+                                <td>@items.Tutor_ImplementerName</td>
+                                <td>@items.Classroom_CDPRAgeGroup</td>
+                                <td>@items.State_Province</td>
+
+                            </tr>
+}
+}
+
+                                        </tbody>
+                                    </table>
+                                    <!--end: Datatable-->
+                                </div>
+
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Card-->
+            <!--begin::Card-->
+            <div class="card card-custom">
+
+            </div>
+            <!--end::Card-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+<!--end::Content-->

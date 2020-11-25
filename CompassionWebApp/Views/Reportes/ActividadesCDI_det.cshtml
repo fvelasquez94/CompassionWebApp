@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CompassionWebApp.Models.Reportes.Aux_ModelsR.TiposPlantillas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h2>Plantillas utilizadas en Actividad</h2>
+
+                    <a href="@Url.Action("ActividadesCDI","Reportes")" class="btn btn-primary ">Volver</a>
+                    <br />
+                    <br />
+                    <table class="table">
+                        <tr>
+                        <th>Actividad</th>
+                            <th>Plantilla</th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                  @item.Nombre
+                                </td>
+                                <td>
+                                    @item.Plantilla
+                                </td>
+                                <td>
+                                 
+                                </td>
+                                <td>                                     
+                                    <a href="@Url.Action("ActividadesCDI_detalle","Reportes", new {ID_plantilla=item.ID_plantilla, ID_actividad=item.ID_ActividadSecundaria })">Ver</a>                                        
+        
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+

@@ -1,0 +1,135 @@
+﻿@model CompassionWebApp.Models.Tb_ActividadesBeneficiarios
+
+@{
+    ViewBag.Title = "Actividades Dinamicas - Create";
+}
+
+<!--begin::Entry--><br />
+<!--begin::Entry--><br />
+<div class="d-flex flex-column-fluid">
+
+    <!--begin::Container-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("Index","ActividadesDinamicas")" class="btn btn-primary btn-sm">Volver</a>
+                <!--begin::Card-->
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title">Nueva actividad</h3>
+                        <div class="card-toolbar">
+                            @*<div class="example-tools justify-content-center">
+                        <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
+                        <span class="example-copy" data-toggle="tooltip" title="Copy code"></span>
+                    </div>*@
+                        </div>
+                    </div>
+                    <br /><br />
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12">CDI</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="FCPID" name="FCPID" disabled>
+
+                                @foreach (var item in ViewBag.FCPID)
+                    {
+                        <option value="@item.ID">@item.Descripcion</option>
+        }
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12">Beneficiario</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="LocalBeneficiaryID" name="LocalBeneficiaryID" onChange='ObtenerActividadesSecundarias()'>
+                                <option value="0">Seleccione Beneficiario</option>
+                                @foreach (var item in ViewBag.LocalBeneficiaryID)
+                    {
+                        <option value="@item.ID">@item.Descripcion</option>
+        }
+                            </select>
+
+                        </div>
+                    </div>
+
+
+                    @*<div class="form-group">
+                                    <label class="control-label col-md-12">Eje estrategico</label>
+                                    <div class="col-md-12">
+                                        <select class="form-control" id="ID_eje" name="ID_eje" onChange='ObtenerCategorias()'>
+                                            <option value="0">Seleccione Eje Estrategico</option>
+                                            @foreach (var item in ViewBag.ID_eje)
+                            {
+                                <option value="@item.ID">@item.Descripcion</option>
+            }
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Categoria</label>
+                                    <div class="col-md-12">
+                                        <select class="form-control" id="ID_categoria" name="ID_categoria" onChange='ObtenerActividadesPrincipales()'>
+                                            <option value="0">Seleccione Categoria</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Actividad principal</label>
+                                    <div class="col-md-12">
+                                        <select class="form-control" id="ID_actividadPrincipal" name="ID_actividadPrincipal" onChange='ObtenerActividadesSecundarias()'>
+                                            <option value="0">Seleccione Actividad Principal</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12">Actividad</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="ID_actividadSecundaria" name="ID_actividadSecundaria">
+                                <option value="0">Seleccione Actividad</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-12">Plantilla para Actividad</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="plantilla" name="plantilla">
+
+                                @foreach (var item in ViewBag.plantillas)
+                    {
+                        if (item.ID == 1)
+                        {
+                            <option value="@item.ID" selected>@item.Descripcion</option>}
+            else
+            {
+                <option value="@item.ID">@item.Descripcion</option>}
+
+}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            <a href="#" class="btn btn-primary" onclick="CrearActividad()">Cargar plantilla</a>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+

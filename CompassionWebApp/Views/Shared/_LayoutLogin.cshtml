@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Compassion Web App</title>
+    <meta name="description" content="Compassion Web Application" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="canonical" href="https://www.compassion.com/" />
+    @Html.Partial("~/Views/Shared/Login/Head_styles.cshtml")
+</head>
+<body id="kt_body" class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
+        @RenderBody()
+    </div>
+    <!--end::Main-->
+    @Html.Partial("~/Views/Shared/Login/Footer_Scripts.cshtml")
+</body>
+</html>

@@ -1,0 +1,253 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!--begin::Global Theme Bundle(used by all pages)-->
+<script src="~/Content/assets/plugins/global/plugins.bundle.js"></script>
+<script src="~/Content/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+<script src="~/Content/assets/js/scripts.bundle.js"></script>
+<!--end::Global Theme Bundle-->
+<!--begin::Page Vendors(used by this page)-->
+<script src="~/Content/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<!--end::Page Vendors-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="~/Content/assets/js/pages/widgets.js"></script>
+<!--end::Page Scripts-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="~/Content/assets/js/pages/features/miscellaneous/toastr.js"></script>
+
+<!--begin::Page Scripts(used by this page)-->
+<script src="~/Content/assets/js/pages/features/miscellaneous/sweetalert2.js"></script>
+
+@if (ViewBag.Title == "Index - CDI" || ViewBag.Title == "Index - Beneficiarios" || ViewBag.Title == "Index - Actividades")
+{
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <!--begin::Page Scripts(used by this page)-->
+    <script src="~/Content/assets/js/pages/crud/datatables/basic/basic.js"></script>
+}
+
+@if (ViewBag.Title == "Inscripcion - Nueva")
+{
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    @Html.Partial("~/Views/Shared/App/Scripts/Create_Inscripcion.cshtml")
+}
+@if (ViewBag.Title == "Inscripcion - Editar")
+{
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    @Html.Partial("~/Views/Shared/App/Scripts/Edit_Inscripcion.cshtml")
+}
+
+@if (ViewBag.Title == "Actividades Dinamicas - Create")
+{
+    @Html.Partial("~/Views/Shared/App/Scripts/Create_ActividadesDinamicas.cshtml")
+}
+@if (ViewBag.Title == "Actividades Dinamicas - Create Bulk")
+{
+    @Html.Partial("~/Views/Shared/App/Scripts/CreateBulk_ActividadesDinamicas.cshtml")
+}
+@if (ViewBag.Title == "Actividades Dinamicas - Edit")
+{
+    @Html.Partial("~/Views/Shared/App/Scripts/Edit_ActividadesDinamicas.cshtml")
+}
+@if (ViewBag.Title == "Actividades Dinamicas - Edit Bulk")
+{
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    @Html.Partial("~/Views/Shared/App/Scripts/EditBulk_ActividadesDinamicas.cshtml")
+}
+@if (ViewBag.Title == "Plantillas - Edit")
+{
+    <script src="~/Content/assets/js/pages/crud/forms/widgets/tagify.js"></script>
+    @Html.Partial("~/Views/Shared/App/Scripts/Edit_Plantillas.cshtml")
+}
+@if (ViewBag.Title == "Plantillas - Create")
+{
+    <script src="~/Content/assets/js/pages/crud/forms/widgets/tagify.js"></script>
+    @Html.Partial("~/Views/Shared/App/Scripts/Create_Plantillas.cshtml")
+}
+@if (ViewBag.Title == "Cambiar periodo")
+{
+
+    @Html.Partial("~/Views/Shared/App/Scripts/CambiarPeriodo.cshtml")
+}
+@if (ViewBag.Title == "Dashboard")
+{
+
+    @Html.Partial("~/Views/Shared/App/Scripts/Index_Script.cshtml")
+}
+@if (ViewBag.Title == "Index - Plantillas")
+{
+
+    @Html.Partial("~/Views/Shared/App/Scripts/Index_plantillasScript.cshtml")
+}
+@if (ViewBag.Title == "Index - Actividades")
+{
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#kt_datatablebef thead tr').clone(true).appendTo('#kt_datatablebef thead');
+            $('#kt_datatablebef thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Buscar" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            var table = $('#kt_datatablebef').DataTable({
+                orderCellsTop: true,
+                "bPaginate": true,
+                "bLengthChange": true,
+                dom: 'Blrtip',
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        },
+                        messageTop: 'La informacion en esta tabla no puede ser compartida a terceros sin previa autorizacion.'
+                    },
+                    'excelHtml5'
+
+                ]
+            });
+
+
+            $('#kt_subheader_search_form').keyup(function () {
+                table.search($(this).val()).draw();
+            })
+        });
+
+        $(document).on("click", '.deletelink', function (event) {
+            var hrf = $(this).attr('href');
+            event.preventDefault();
+            Swal.fire({
+                title: "Estas seguro de eliminar este registro?",
+                text: "Esta acción no puede revertirse.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Si, eliminalo!"
+            }).then(function (result) {
+                if (result.value) {
+
+                    window.location.href = hrf;
+
+
+                }
+            });
+
+        });
+
+    </script>
+}
+@if (ViewBag.Title == "Index - Beneficiarios")
+{
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#kt_datatablebef thead tr').clone(true).appendTo('#kt_datatablebef thead');
+            $('#kt_datatablebef thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Buscar" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            var table = $('#kt_datatablebef').DataTable({
+                orderCellsTop: true,
+
+                "bPaginate": true,
+                "bLengthChange": true,
+                dom: 'Blrtip',
+                buttons: [
+
+                    'excelHtml5'
+
+                ]
+            });
+        });
+    </script>
+}
+@if (ViewBag.Title == "ActividadCDIDetalle - Reportes")
+{
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtReport thead tr').clone(true).appendTo('#dtReport thead');
+            $('#dtReport thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Buscar" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+
+            var table = $('#dtReport').DataTable({
+                orderCellsTop: true,
+
+                "bPaginate": true,
+                "bLengthChange": true,
+                dom: 'Blrtip',
+                buttons: [
+
+                    'excelHtml5'
+
+                ]
+            });
+
+            table.columns('.noshowcol').visible(false);
+        });
+    </script>
+}
+@if (ViewBag.Title == "ActividadesCDI - Reporte" || ViewBag.Title == "ActividadesBeneficiario - Reporte")
+{
+    <!--begin::Page Vendors(used by this page)-->
+    <script src="~/Content/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var table = $('#dtReport').DataTable({
+                orderCellsTop: true,
+
+                "bPaginate": true,
+                "bLengthChange": true,
+                dom: 'fBlrtip',
+                buttons: [
+
+                    'excelHtml5'
+
+                ]
+            });
+
+        });
+    </script>
+}
+
+<script src="~/Content/assets/js/pages/crud/forms/widgets/select2.js"></script>

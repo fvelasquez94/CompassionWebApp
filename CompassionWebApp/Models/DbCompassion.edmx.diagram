@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3896be43967f48ff950cd7273e6f9b06" Name="Diagram1">
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_Beneficiarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_CDI" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_ActividadesPrincipales" Width="1.5" PointX="9.875" PointY="1" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_ActividadesSecundarias" Width="1.5" PointX="12.125" PointY="1" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_Categorias" Width="1.5" PointX="7.625" PointY="1" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_EjesEstrategicos" Width="1.5" PointX="5.375" PointY="1.25" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_PrecondicionesTOC" Width="1.5" PointX="16.625" PointY="1.125" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_Resultados" Width="1.5" PointX="14.375" PointY="1" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesPrincipales_Tb_Categorias" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_Resultados_Tb_ActividadesSecundarias" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_Categorias_Tb_EjesEstrategicos" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_PrecondicionesTOC_Tb_Resultados" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_ActividadesBeneficiarios" Width="1.5" PointX="18.875" PointY="0.75" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_CDI" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Resultados" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias1" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_ActividadesDetalles" Width="1.5" PointX="3.375" PointY="5.75" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_Usuarios" Width="1.5" PointX="5.375" PointY="4.75" />
+        <AssociationConnector Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Usuarios" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_Plantillas" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CompassionDBModel.Tb_InscripcionActividad" Width="1.5" PointX="7.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,163 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script>
+    $(document).ready(function () {
+      
+        // basic
+        $('#LocalBeneficiaryID').select2({
+            placeholder: "Seleccione Beneficiario"
+        });
+    });
+   
+    function ObtenerCategorias() {
+        var ID_eje = $("#ID_eje").val();
+            $.ajax
+                ({
+                    url: '/ActividadesDinamicas/ObtenerCategorias',
+                    type: 'POST',
+                    datatype: 'application/json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        eje: ID_eje,
+                    }),
+                    success: function (result) {
+
+                        $("#ID_categoria").html("");
+                        $("#ID_actividadPrincipal").html("");
+                        $("#ID_actividadSecundaria").html("");
+                        $("#ID_categoria").append($('<option selected></option>').val(0).html("Seleccione Categoria"))
+                        $("#ID_actividadPrincipal").append($('<option selected></option>').val(0).html("Seleccione Actividad Principal"))
+                        $("#ID_actividadSecundaria").append($('<option selected></option>').val(0).html("Seleccione Actividad Secundaria"))
+                        $.each($.parseJSON(result), function (i, cat) {
+                            $("#ID_categoria").append($('<option></option>').val(cat.ID).html(cat.Descripcion));
+                        }
+
+                        )
+                    },
+                    error: function () {
+                        alert("algo salio mal..")
+                    },
+                });
+    }
+
+    function ObtenerActividadesPrincipales() {
+        var ID_categoria = $("#ID_categoria").val();
+        $.ajax
+            ({
+                url: '/ActividadesDinamicas/ObtenerActividadesPrincipales',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    categoria: ID_categoria,
+                }),
+                success: function (result) {
+
+                    $("#ID_actividadPrincipal").html("");
+                    $("#ID_actividadSecundaria").html("");
+                    $("#ID_actividadPrincipal").append($('<option selected></option>').val(0).html("Seleccione Actividad Principal"))
+                    $("#ID_actividadSecundaria").append($('<option selected></option>').val(0).html("Seleccione Actividad Secundaria"))
+                    $.each($.parseJSON(result), function (i, cat) {
+                        $("#ID_actividadPrincipal").append($('<option></option>').val(cat.ID).html(cat.Descripcion));
+                    }
+
+                    )
+                },
+                error: function () {
+                    alert("algo salio mal..")
+                },
+            });
+    }
+
+    function ObtenerActividadesSecundarias() {
+        //var ID_Actividad = $("#ID_actividadPrincipal").val();
+        var ID_Beneficiario = $("#LocalBeneficiaryID").val();
+        $.ajax
+            ({
+                url: '/ActividadesDinamicas/ObtenerActividadesSecundariasBeneficiario',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id_beneficiario: ID_Beneficiario,
+                }),
+                success: function (result) {
+                    var flag = 0;
+                    $("#ID_actividadSecundaria").html("");
+                    $("#ID_actividadSecundaria").append($('<option selected></option>').val(0).html("Seleccione Actividad"));
+                    $.each($.parseJSON(result), function (i, cat) {
+                        flag = 1;
+                        $("#ID_actividadSecundaria").append($('<option></option>').val(cat.ID).html(cat.Descripcion));
+                    });
+
+                    if (flag==0) {
+                        $("#ID_actividadSecundaria").append($('<option selected></option>').val(0).html("Beneficiario no tiene actividades inscritas"))
+                    }
+                },
+                error: function () {
+                    alert("algo salio mal..")
+                },
+            });
+    }
+
+    function CrearActividad() {
+
+        var flag = 0;
+       
+
+        var ID_beneficiario = $("#LocalBeneficiaryID").val();
+        var ID_CDI = $("#FCPID").val();
+        var ID_eje = 0;
+        var ID_categoria = 0;
+        var ID_Actividad = 0;
+        var ID_Secundaria = $("#ID_actividadSecundaria").val();
+        var ID_Plantilla = $("#plantilla").val();
+
+        if (ID_beneficiario == 0 || ID_beneficiario == "0") { flag = 1;}
+        if (ID_CDI == 0 || ID_CDI == "0") { flag = 1;}
+        //if (ID_eje == 0 || ID_eje == "0") { flag = 1;}
+       // if (ID_categoria == 0 || ID_categoria == "0") { flag = 1;}
+        //if (ID_Actividad == 0 || ID_Actividad == "0") { flag = 1;}
+        if (ID_Secundaria == 0 || ID_Secundaria == "0") { flag = 1; }
+
+        if (flag == 1) {
+            alert("Complete todos los campos");
+        } else {
+                $.ajax
+            ({
+                url: '/ActividadesDinamicas/CrearActividad',
+                type: 'POST',
+                datatype: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    ID_beneficiario: ID_beneficiario,
+                    ID_CDI: ID_CDI,
+                    eje: ID_eje,
+                    ID_categoria: ID_categoria,
+                    ID_Principal: ID_Actividad,
+                    ID_Secundaria: ID_Secundaria,
+                    ID_Plantilla: ID_Plantilla
+                }),
+                success: function (result) {
+                    if (result.mensaje == "success") {
+                                var url2 = '@Url.Action("Edit", "ActividadesDinamicas", new { id = "ID_ACT"})';
+                        url2 = url2.replace('ID_ACT', result.id_actividadBeneficiario);
+                        window.location.href = url2;
+                    } else {
+                        alert("algo salio mal")
+                    }
+                },
+                error: function () {
+                    alert("algo salio mal..")
+                },
+                });
+        }
+        }
+
+
+    
+
+</script>

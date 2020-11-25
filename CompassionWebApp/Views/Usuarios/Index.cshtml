@@ -1,0 +1,107 @@
+﻿@model IEnumerable<CompassionWebApp.Models.Tb_Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Dashboard-->
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h2>Usuarios</h2>
+
+                    <a href="@Url.Action("Create","Usuarios")" class="btn btn-success ">Nuevo</a>
+                    <br />
+                    <br />
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Correo
+                            </th>
+
+                            <th>
+                               Nombre de usuario
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pais)
+                            </th>
+   
+                            <th>
+                                @Html.DisplayNameFor(model => model.Roles)
+                            </th>
+    
+                            <th>
+                              Activo
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CDI)
+                            </th>
+                            <th>
+                                Periodos activos
+                            </th>
+                            <th>
+                           Fecha Inicio (Periodo)
+                            </th>
+                            <th>
+                                Fecha Fin (Periodo)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+   
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre_completo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Pais)
+                                </td>
+     
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Roles)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Active)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CDI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PeriodosActivos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaInicioPeriodos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaFinalPeriodos)
+                                </td>
+                                <td>
+                                    @if (item.ID_usuario != 1)
+    {
+                                <a href="@Url.Action("Edit","Usuarios", new { id=item.ID_usuario})">Editar </a>
+                                @*<a href="@Url.Action("Delete","Usuarios")">Eliminar</a>*@
+
+}
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

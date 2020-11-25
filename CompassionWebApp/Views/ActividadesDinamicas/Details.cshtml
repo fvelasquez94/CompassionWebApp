@@ -1,0 +1,82 @@
+﻿@model CompassionWebApp.Models.Tb_ActividadesBeneficiarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tb_ActividadesBeneficiarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_ActividadesPrincipales.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_ActividadesPrincipales.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_ActividadesSecundarias.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_ActividadesSecundarias.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_Beneficiarios.BeneficiaryICPID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_Beneficiarios.BeneficiaryICPID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_Categorias.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_Categorias.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_CDI.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_CDI.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_EjesEstrategicos.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_EjesEstrategicos.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_PrecondicionesTOC.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_PrecondicionesTOC.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tb_Resultados.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tb_Resultados.Codigo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

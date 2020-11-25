@@ -1,0 +1,391 @@
+﻿@model CompassionWebApp.Models.Tb_Plantillas
+@{
+    ViewBag.Title = "Plantillas - Edit";
+    List<CompassionWebApp.Models.Tb_ActividadesDetalles> lstdetalles = (List<CompassionWebApp.Models.Tb_ActividadesDetalles>)ViewBag.lstDetalles;
+}
+
+
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="container">
+        <div class="col-md-12">
+            <a href="@Url.Action("Index","Plantillas")" class="btn btn-primary btn-sm">Volver</a>
+            <!--begin::Notice-->
+            <div class="alert alert-custom alert-white alert-shadow gutter-b" role="alert">
+                <div class="alert-icon">
+                    <span class="svg-icon svg-icon-primary svg-icon-xl">
+                        <!--begin::Svg Icon | path:assets/media/svg/icons/Tools/Compass.svg-->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path d="M7.07744993,12.3040451 C7.72444571,13.0716094 8.54044565,13.6920474 9.46808594,14.1079953 L5,23 L4.5,18 L7.07744993,12.3040451 Z M14.5865511,14.2597864 C15.5319561,13.9019016 16.375416,13.3366121 17.0614026,12.6194459 L19.5,18 L19,23 L14.5865511,14.2597864 Z M12,3.55271368e-14 C12.8284271,3.53749572e-14 13.5,0.671572875 13.5,1.5 L13.5,4 L10.5,4 L10.5,1.5 C10.5,0.671572875 11.1715729,3.56793164e-14 12,3.55271368e-14 Z" fill="#000000" opacity="0.3" />
+                                <path d="M12,10 C13.1045695,10 14,9.1045695 14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 C10,9.1045695 10.8954305,10 12,10 Z M12,13 C9.23857625,13 7,10.7614237 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,10.7614237 14.7614237,13 12,13 Z" fill="#000000" fill-rule="nonzero" />
+                            </g>
+                        </svg>
+                        <!--end::Svg Icon-->
+                    </span>
+                </div>
+                <div class="alert-text">
+                    Comienza agregando elementos del panel izquierdo para formar la estructura de parametros deseada
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Page Layout-->
+            <div class="d-flex flex-row">
+                <!--begin::Aside-->
+                <div class="flex-column offcanvas-mobile w-300px w-xl-325px" id="kt_profile_aside">
+                    <!--begin::List Widget 17-->
+                    <div class="card card-custom gutter-b">
+                        <!--begin::Header-->
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label font-weight-bolder text-dark">Elementos disponibles</span>
+                                <span class="text-muted mt-3 font-weight-bold font-size-sm">Por tipo</span>
+                            </h3>
+                            <div class="card-toolbar">
+                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
+                                    <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ki ki-bold-more-hor"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                        <!--begin::Navigation-->
+                                        <ul class="navi navi-hover py-5">
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon">
+                                                        <i class="flaticon2-drop"></i>
+                                                    </span>
+                                                    <span class="navi-text">Nuevo elemento</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li class="navi-separator my-3"></li>
+                                            <li class="navi-item">
+                                                <a href="#" class="navi-link">
+                                                    <span class="navi-icon">
+                                                        <i class="flaticon2-magnifier-tool"></i>
+                                                    </span>
+                                                    <span class="navi-text">Ayuda</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                        <!--end::Navigation-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body pt-4">
+                            <!--begin::Container-->
+                            <div>
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/4.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <label class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Caja de texto</label>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametros de texto libre
+
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl1()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/12.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Caja numerica</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametros con decimales
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl2()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/13.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Caja numerica enteros</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametros numericos enteros
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl3()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/12.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Calendario</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametro de fecha con control de calendario
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl4()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/12.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Lista</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametro de texto con control de lista para opciones definidas
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl5()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
+                                <div class="d-flex align-items-center mb-8">
+                                    <!--begin::Symbol-->
+                                    <div class="symbol mr-5 pt-1">
+                                        <div class="symbol-label min-w-65px min-h-100px" style="background-image: url('assets/media/books/12.png')"></div>
+                                    </div>
+                                    <!--end::Symbol-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Title-->
+                                        <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">Rango</a>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <span class="text-muted font-weight-bold font-size-sm pb-4">
+                                            Parametro de control para establecer rangos numericos
+                                        </span>
+                                        <!--end::Text-->
+                                        <!--begin::Action-->
+                                        <div>
+                                            <button type="button" onclick="agregarControl6()" class="btn btn-light font-weight-bolder font-size-sm py-2">Agregar</button>
+                                        </div>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Info-->
+                                </div>
+                                <!--end::Item-->
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::List Widget 17-->
+                </div>
+                <!--end::Aside-->
+                <!--begin::Layout-->
+                <div class="flex-row-fluid ml-lg-8">
+                    <!--begin::Card-->
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body p-0">
+                            <!-- begin: Invoice-->
+                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                <div class="col-md-10">
+                                    <label>Nombre de plantilla</label>
+                                    <input type="text" id="nombrePlantilla" value="@Model.Nombre" class="form-control" />
+                                    <label>Descripcion</label>
+                                    <input type="text" id="descripcionPlantilla" value="@Model.Descripcion"  class="form-control" />
+                                    <hr />
+                                </div>
+                            </div>
+                            <!-- begin: Invoice body-->
+                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                <div class="col-md-10" id="contenedorDinamico">
+                                    @foreach (var item_plantilla in lstdetalles)
+            {
+                if (item_plantilla.ID_recurso == 1)
+                {
+
+                                            <div class="form-group control controldinamico rec1">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Caja de texto <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec1" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes1" placeholder="Descripcion de parametro" value="@item_plantilla.Descripcion"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+                                            <input type="text" class="form-control" />
+                                            <hr/> </div> 
+
+                                        }
+                                        if (item_plantilla.ID_recurso == 2)
+                                        {
+ 
+                                            <div class="form-group control controldinamico rec2">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Caja numerica <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec2" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes2" placeholder="Descripcion de parametro" value="@item_plantilla.Descripcion"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+                                            <input type="text" class="form-control touchspin" value="0" />
+                                            <hr /> </div>
+
+
+                                        }
+                                        if (item_plantilla.ID_recurso == 3)
+                                        {
+                                            <div class="form-group control controldinamico rec3">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Caja numerica enteros <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec3" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes3" placeholder="Descripcion de parametro" value="@item_plantilla.Descripcion"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+                                            <input type="text" class="form-control touchspin2" value="0" />
+                                            <hr /> </div>
+                                        }
+                                        if (item_plantilla.ID_recurso == 4)
+                                        {
+ 
+
+                                            <div class="form-group control controldinamico rec4">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Calendario <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec4" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes4" placeholder="Descripcion de parametro" value="@item_plantilla.Descripcion"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+                                            <input type="date" class="form-control" />
+                                            <hr /> </div>
+                                        }
+                                        if (item_plantilla.ID_recurso == 5)
+                                        {
+                                            <div class="form-group control controldinamico rec5">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Lista <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec5" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes5" placeholder="Descripcion de parametro"  value="@item_plantilla.Descripcion"/><br />
+                                            <input class="form-control tagify" id="tagif_@item_plantilla.Orden" value="@item_plantilla.ValorTexto" placeholder="Digita tus opciones, luego presiona ENTER"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+
+                                            <select class="form-control">
+                                            <option value="0">Seleccione</option>
+                                            <option>Opcion 1</option>
+                                            <option>Opcion 2</option>
+                                            <option>Opcion n</option>
+                                            </select>
+                                            <hr /> </div>
+
+                                        }
+                                        if (item_plantilla.ID_recurso == 6)
+                                        {
+
+
+                                            <div class="form-group control controldinamico rec6">
+                                            <input type="hidden" value="@item_plantilla.Orden" class="order"/>
+                                            <p style="text-align:left;">Rango <button class="btn btn-sm btn-danger" Onclick="eliminarElemento(this,@item_plantilla.Orden)" style="float:right;">Eliminar</button></p ><br>
+                                            <input type="text" class="form-control textrec6" placeholder="Nombre de parametro a mostrar" value="@item_plantilla.Parametro"/>
+                                            <input type="text" class="form-control textdes6" placeholder="Descripcion de parametro" value="@item_plantilla.Descripcion"/>
+                                            <span class="form-text text-muted">Previsualizacion.</span>
+                                            <br /><br /><div id="rangslider_@item_plantilla.Orden" class="nouislider"></div >
+                                            <hr /> </div>
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <!-- end: Invoice body-->
+                            <!-- begin: Invoice footer-->
+                            <!-- end: Invoice footer-->
+                            <!-- begin: Invoice action-->
+                            <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                                <div class="col-md-10">
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-light-primary font-weight-bold"  onclick="GuardarPlantilla()">Guardar plantilla</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end: Invoice action-->
+                            <!-- end: Invoice-->
+                        </div>
+                    </div>
+                    <!--end::Card-->
+                </div>
+                <!--end::Layout-->
+            </div>
+            <!--end::Page Layout-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+<!--end::Content-->
+
+

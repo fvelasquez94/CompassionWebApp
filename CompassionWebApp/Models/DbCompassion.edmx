@@ -1,0 +1,1174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CompassionDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tb_ActividadesBeneficiarios">
+          <Key>
+            <PropertyRef Name="ID_actividadBeneficiario" />
+          </Key>
+          <Property Name="ID_actividadBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocalBeneficiaryID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FCPID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_eje" Type="int" Nullable="false" />
+          <Property Name="ID_categoria" Type="int" Nullable="false" />
+          <Property Name="ID_actividadPrincipal" Type="int" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="int" Nullable="false" />
+          <Property Name="ID_resultado" Type="int" Nullable="false" />
+          <Property Name="ID_precondicionTOC" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Fecha_actualizacion" Type="datetime" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID_usuario" Type="int" Nullable="false" />
+          <Property Name="ID_plantilla" Type="int" Nullable="false" />
+          <Property Name="parent" Type="int" Nullable="false" />
+          <Property Name="masiva" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_ActividadesDetalles">
+          <Key>
+            <PropertyRef Name="ID_detalleActividad" />
+          </Key>
+          <Property Name="ID_detalleActividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_recurso" Type="int" Nullable="false" />
+          <Property Name="Parametro" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="ValorTexto" Type="varchar(max)" Nullable="false" />
+          <Property Name="ValorNumerico" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ValorEntero" Type="int" Nullable="false" />
+          <Property Name="ValorMultipleOpciones" Type="varchar(max)" Nullable="false" />
+          <Property Name="ValorMax" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ValorMin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Original" Type="bit" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="int" Nullable="false" />
+          <Property Name="ID_actividadBeneficiario" Type="int" Nullable="false" />
+          <Property Name="ID_plantilla" Type="int" Nullable="false" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_ActividadesPrincipales">
+          <Key>
+            <PropertyRef Name="ID_actividadPrincipal" />
+          </Key>
+          <Property Name="ID_actividadPrincipal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="ID_categoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_ActividadesSecundarias">
+          <Key>
+            <PropertyRef Name="ID_actividadSecundaria" />
+          </Key>
+          <Property Name="ID_actividadSecundaria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Nombre_corto" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Periodicidad" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="ID_actividadPrincipal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Beneficiarios">
+          <Key>
+            <PropertyRef Name="LocalBeneficiaryID" />
+          </Key>
+          <Property Name="BeneficiaryICPID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocalBeneficiaryID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChronicIllnesses" Type="varchar" MaxLength="500" />
+          <Property Name="TypeOfVocational_TechTraining" Type="varchar(max)" />
+          <Property Name="FormalEducationLevel" Type="varchar" MaxLength="150" />
+          <Property Name="BeneficiaryConfessesJesusasSavior" Type="bit" Nullable="false" />
+          <Property Name="SponsorshipStatus" Type="varchar" MaxLength="50" />
+          <Property Name="AccountName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Tutor_ImplementerName" Type="varchar" MaxLength="500" />
+          <Property Name="Classroom_CDPRAgeGroup" Type="varchar" MaxLength="50" />
+          <Property Name="Household" Type="varchar" MaxLength="500" />
+          <Property Name="BeneficiaryStatus" Type="varchar" MaxLength="50" />
+          <Property Name="BeneficiaryCluster" Type="varchar" MaxLength="50" />
+          <Property Name="State_Province" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Tb_Categorias">
+          <Key>
+            <PropertyRef Name="ID_categoria" />
+          </Key>
+          <Property Name="ID_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="ID_eje" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_CDI">
+          <Key>
+            <PropertyRef Name="FCPID" />
+          </Key>
+          <Property Name="FCPID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Dpto" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="GpsLatitud" Type="varchar" MaxLength="50" />
+          <Property Name="GpsLongitud" Type="varchar" MaxLength="50" />
+          <Property Name="Denominacion" Type="varchar(max)" Nullable="false" />
+          <Property Name="NombreCDI" Type="varchar(max)" Nullable="false" />
+          <Property Name="NombreIglesia" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Cluster" Type="varchar" MaxLength="50" />
+          <Property Name="Supervisor" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Tb_EjesEstrategicos">
+          <Key>
+            <PropertyRef Name="ID_eje" />
+          </Key>
+          <Property Name="ID_eje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_InscripcionActividad">
+          <Key>
+            <PropertyRef Name="ID_inscripcion" />
+          </Key>
+          <Property Name="ID_inscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocalBeneficiaryID" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FCPID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="ID_usuario" Type="int" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Plantillas">
+          <Key>
+            <PropertyRef Name="ID_plantilla" />
+          </Key>
+          <Property Name="ID_plantilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="ID_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_PrecondicionesTOC">
+          <Key>
+            <PropertyRef Name="ID_precondicionTOC" />
+          </Key>
+          <Property Name="ID_precondicionTOC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="ID_resultado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Resultados">
+          <Key>
+            <PropertyRef Name="ID_resultado" />
+          </Key>
+          <Property Name="ID_resultado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Usuarios">
+          <Key>
+            <PropertyRef Name="ID_usuario" />
+          </Key>
+          <Property Name="ID_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre_completo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Roles" Type="varchar(max)" Nullable="false" />
+          <Property Name="URL_image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CDI" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PeriodosActivos" Type="varchar" MaxLength="100" />
+          <Property Name="FechaInicioPeriodos" Type="datetime" />
+          <Property Name="FechaFinalPeriodos" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales">
+          <End Role="Tb_ActividadesPrincipales" Type="Self.Tb_ActividadesPrincipales" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias">
+          <End Role="Tb_ActividadesSecundarias" Type="Self.Tb_ActividadesSecundarias" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios">
+          <End Role="Tb_Beneficiarios" Type="Self.Tb_Beneficiarios" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Beneficiarios">
+              <PropertyRef Name="LocalBeneficiaryID" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="LocalBeneficiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias1">
+          <End Role="Tb_Categorias" Type="Self.Tb_Categorias" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Categorias">
+              <PropertyRef Name="ID_categoria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_CDI">
+          <End Role="Tb_CDI" Type="Self.Tb_CDI" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_CDI">
+              <PropertyRef Name="FCPID" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="FCPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos">
+          <End Role="Tb_EjesEstrategicos" Type="Self.Tb_EjesEstrategicos" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_EjesEstrategicos">
+              <PropertyRef Name="ID_eje" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1">
+          <End Role="Tb_PrecondicionesTOC" Type="Self.Tb_PrecondicionesTOC" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_PrecondicionesTOC">
+              <PropertyRef Name="ID_precondicionTOC" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_precondicionTOC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Resultados">
+          <End Role="Tb_Resultados" Type="Self.Tb_Resultados" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Resultados">
+              <PropertyRef Name="ID_resultado" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Usuarios">
+          <End Role="Tb_Usuarios" Type="Self.Tb_Usuarios" Multiplicity="1" />
+          <End Role="Tb_ActividadesBeneficiarios" Type="Self.Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Usuarios">
+              <PropertyRef Name="ID_usuario" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesPrincipales_Tb_Categorias">
+          <End Role="Tb_Categorias" Type="Self.Tb_Categorias" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tb_ActividadesPrincipales" Type="Self.Tb_ActividadesPrincipales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Categorias">
+              <PropertyRef Name="ID_categoria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales">
+          <End Role="Tb_ActividadesPrincipales" Type="Self.Tb_ActividadesPrincipales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tb_ActividadesSecundarias" Type="Self.Tb_ActividadesSecundarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Categorias_Tb_EjesEstrategicos">
+          <End Role="Tb_EjesEstrategicos" Type="Self.Tb_EjesEstrategicos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tb_Categorias" Type="Self.Tb_Categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_EjesEstrategicos">
+              <PropertyRef Name="ID_eje" />
+            </Principal>
+            <Dependent Role="Tb_Categorias">
+              <PropertyRef Name="ID_eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_PrecondicionesTOC_Tb_Resultados">
+          <End Role="Tb_Resultados" Type="Self.Tb_Resultados" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tb_PrecondicionesTOC" Type="Self.Tb_PrecondicionesTOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Resultados">
+              <PropertyRef Name="ID_resultado" />
+            </Principal>
+            <Dependent Role="Tb_PrecondicionesTOC">
+              <PropertyRef Name="ID_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Resultados_Tb_ActividadesSecundarias">
+          <End Role="Tb_ActividadesSecundarias" Type="Self.Tb_ActividadesSecundarias" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tb_Resultados" Type="Self.Tb_Resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Principal>
+            <Dependent Role="Tb_Resultados">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompassionDBModelStoreContainer">
+          <EntitySet Name="Tb_ActividadesBeneficiarios" EntityType="Self.Tb_ActividadesBeneficiarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_ActividadesDetalles" EntityType="Self.Tb_ActividadesDetalles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_ActividadesPrincipales" EntityType="Self.Tb_ActividadesPrincipales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_ActividadesSecundarias" EntityType="Self.Tb_ActividadesSecundarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Beneficiarios" EntityType="Self.Tb_Beneficiarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Categorias" EntityType="Self.Tb_Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_CDI" EntityType="Self.Tb_CDI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_EjesEstrategicos" EntityType="Self.Tb_EjesEstrategicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_InscripcionActividad" EntityType="Self.Tb_InscripcionActividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Plantillas" EntityType="Self.Tb_Plantillas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_PrecondicionesTOC" EntityType="Self.Tb_PrecondicionesTOC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Resultados" EntityType="Self.Tb_Resultados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tb_Usuarios" EntityType="Self.Tb_Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales">
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias">
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios">
+            <End Role="Tb_Beneficiarios" EntitySet="Tb_Beneficiarios" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias1" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_Categorias1">
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_CDI" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_CDI">
+            <End Role="Tb_CDI" EntitySet="Tb_CDI" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos">
+            <End Role="Tb_EjesEstrategicos" EntitySet="Tb_EjesEstrategicos" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1">
+            <End Role="Tb_PrecondicionesTOC" EntitySet="Tb_PrecondicionesTOC" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Resultados" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_Resultados">
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Usuarios" Association="Self.FK_Tb_ActividadesBeneficiarios_Tb_Usuarios">
+            <End Role="Tb_Usuarios" EntitySet="Tb_Usuarios" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesPrincipales_Tb_Categorias" Association="Self.FK_Tb_ActividadesPrincipales_Tb_Categorias">
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales" Association="Self.FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales">
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Categorias_Tb_EjesEstrategicos" Association="Self.FK_Tb_Categorias_Tb_EjesEstrategicos">
+            <End Role="Tb_EjesEstrategicos" EntitySet="Tb_EjesEstrategicos" />
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_PrecondicionesTOC_Tb_Resultados" Association="Self.FK_Tb_PrecondicionesTOC_Tb_Resultados">
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+            <End Role="Tb_PrecondicionesTOC" EntitySet="Tb_PrecondicionesTOC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Resultados_Tb_ActividadesSecundarias" Association="Self.FK_Tb_Resultados_Tb_ActividadesSecundarias">
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompassionDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tb_Beneficiarios">
+          <Key>
+            <PropertyRef Name="LocalBeneficiaryID" />
+          </Key>
+          <Property Name="BeneficiaryICPID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocalBeneficiaryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChronicIllnesses" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfVocational_TechTraining" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FormalEducationLevel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BeneficiaryConfessesJesusasSavior" Type="Boolean" Nullable="false" />
+          <Property Name="SponsorshipStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Tutor_ImplementerName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Classroom_CDPRAgeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Household" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BeneficiaryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeneficiaryCluster" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State_Province" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" FromRole="Tb_Beneficiarios" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityType Name="Tb_CDI">
+          <Key>
+            <PropertyRef Name="FCPID" />
+          </Key>
+          <Property Name="FCPID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dpto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GpsLatitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GpsLongitud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Denominacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreCDI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreIglesia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cluster" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Supervisor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_CDI" FromRole="Tb_CDI" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityContainer Name="CompassionDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tb_Beneficiarios" EntityType="Self.Tb_Beneficiarios" />
+          <EntitySet Name="Tb_CDI" EntityType="Self.Tb_CDI" />
+          <EntitySet Name="Tb_ActividadesPrincipales" EntityType="CompassionDBModel.Tb_ActividadesPrincipales" />
+          <EntitySet Name="Tb_ActividadesSecundarias" EntityType="CompassionDBModel.Tb_ActividadesSecundarias" />
+          <EntitySet Name="Tb_Categorias" EntityType="CompassionDBModel.Tb_Categorias" />
+          <EntitySet Name="Tb_EjesEstrategicos" EntityType="CompassionDBModel.Tb_EjesEstrategicos" />
+          <EntitySet Name="Tb_PrecondicionesTOC" EntityType="CompassionDBModel.Tb_PrecondicionesTOC" />
+          <EntitySet Name="Tb_Resultados" EntityType="CompassionDBModel.Tb_Resultados" />
+          <AssociationSet Name="FK_Tb_ActividadesPrincipales_Tb_Categorias" Association="CompassionDBModel.FK_Tb_ActividadesPrincipales_Tb_Categorias">
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales" Association="CompassionDBModel.FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales">
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Resultados_Tb_ActividadesSecundarias" Association="CompassionDBModel.FK_Tb_Resultados_Tb_ActividadesSecundarias">
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_Categorias_Tb_EjesEstrategicos" Association="CompassionDBModel.FK_Tb_Categorias_Tb_EjesEstrategicos">
+            <End Role="Tb_EjesEstrategicos" EntitySet="Tb_EjesEstrategicos" />
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_PrecondicionesTOC_Tb_Resultados" Association="CompassionDBModel.FK_Tb_PrecondicionesTOC_Tb_Resultados">
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+            <End Role="Tb_PrecondicionesTOC" EntitySet="Tb_PrecondicionesTOC" />
+          </AssociationSet>
+          <EntitySet Name="Tb_ActividadesBeneficiarios" EntityType="CompassionDBModel.Tb_ActividadesBeneficiarios" />
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales">
+            <End Role="Tb_ActividadesPrincipales" EntitySet="Tb_ActividadesPrincipales" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias">
+            <End Role="Tb_ActividadesSecundarias" EntitySet="Tb_ActividadesSecundarias" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios">
+            <End Role="Tb_Beneficiarios" EntitySet="Tb_Beneficiarios" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias">
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_CDI" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_CDI">
+            <End Role="Tb_CDI" EntitySet="Tb_CDI" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos">
+            <End Role="Tb_EjesEstrategicos" EntitySet="Tb_EjesEstrategicos" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC">
+            <End Role="Tb_PrecondicionesTOC" EntitySet="Tb_PrecondicionesTOC" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Resultados" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Resultados">
+            <End Role="Tb_Resultados" EntitySet="Tb_Resultados" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias1" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias1">
+            <End Role="Tb_Categorias" EntitySet="Tb_Categorias" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1">
+            <End Role="Tb_PrecondicionesTOC" EntitySet="Tb_PrecondicionesTOC" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <EntitySet Name="Tb_ActividadesDetalles" EntityType="CompassionDBModel.Tb_ActividadesDetalles" />
+          <EntitySet Name="Tb_Usuarios" EntityType="CompassionDBModel.Tb_Usuarios" />
+          <AssociationSet Name="FK_Tb_ActividadesBeneficiarios_Tb_Usuarios" Association="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Usuarios">
+            <End Role="Tb_Usuarios" EntitySet="Tb_Usuarios" />
+            <End Role="Tb_ActividadesBeneficiarios" EntitySet="Tb_ActividadesBeneficiarios" />
+          </AssociationSet>
+          <EntitySet Name="Tb_Plantillas" EntityType="CompassionDBModel.Tb_Plantillas" />
+          <EntitySet Name="Tb_InscripcionActividad" EntityType="CompassionDBModel.Tb_InscripcionActividad" />
+        </EntityContainer>
+        <EntityType Name="Tb_ActividadesPrincipales">
+          <Key>
+            <PropertyRef Name="ID_actividadPrincipal" />
+          </Key>
+          <Property Name="ID_actividadPrincipal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_categoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_Categorias" Relationship="CompassionDBModel.FK_Tb_ActividadesPrincipales_Tb_Categorias" FromRole="Tb_ActividadesPrincipales" ToRole="Tb_Categorias" />
+          <NavigationProperty Name="Tb_ActividadesSecundarias" Relationship="CompassionDBModel.FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales" FromRole="Tb_ActividadesPrincipales" ToRole="Tb_ActividadesSecundarias" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales" FromRole="Tb_ActividadesPrincipales" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityType Name="Tb_ActividadesSecundarias">
+          <Key>
+            <PropertyRef Name="ID_actividadSecundaria" />
+          </Key>
+          <Property Name="ID_actividadSecundaria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_corto" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_actividadPrincipal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_ActividadesPrincipales" Relationship="CompassionDBModel.FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales" FromRole="Tb_ActividadesSecundarias" ToRole="Tb_ActividadesPrincipales" />
+          <NavigationProperty Name="Tb_Resultados" Relationship="CompassionDBModel.FK_Tb_Resultados_Tb_ActividadesSecundarias" FromRole="Tb_ActividadesSecundarias" ToRole="Tb_Resultados" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias" FromRole="Tb_ActividadesSecundarias" ToRole="Tb_ActividadesBeneficiarios" />
+          <Property Name="Periodicidad" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tb_Categorias">
+          <Key>
+            <PropertyRef Name="ID_categoria" />
+          </Key>
+          <Property Name="ID_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_eje" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_ActividadesPrincipales" Relationship="CompassionDBModel.FK_Tb_ActividadesPrincipales_Tb_Categorias" FromRole="Tb_Categorias" ToRole="Tb_ActividadesPrincipales" />
+          <NavigationProperty Name="Tb_EjesEstrategicos" Relationship="CompassionDBModel.FK_Tb_Categorias_Tb_EjesEstrategicos" FromRole="Tb_Categorias" ToRole="Tb_EjesEstrategicos" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias" FromRole="Tb_Categorias" ToRole="Tb_ActividadesBeneficiarios" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios1" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias1" FromRole="Tb_Categorias" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityType Name="Tb_EjesEstrategicos">
+          <Key>
+            <PropertyRef Name="ID_eje" />
+          </Key>
+          <Property Name="ID_eje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tb_Categorias" Relationship="CompassionDBModel.FK_Tb_Categorias_Tb_EjesEstrategicos" FromRole="Tb_EjesEstrategicos" ToRole="Tb_Categorias" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos" FromRole="Tb_EjesEstrategicos" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityType Name="Tb_PrecondicionesTOC">
+          <Key>
+            <PropertyRef Name="ID_precondicionTOC" />
+          </Key>
+          <Property Name="ID_precondicionTOC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_resultado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_Resultados" Relationship="CompassionDBModel.FK_Tb_PrecondicionesTOC_Tb_Resultados" FromRole="Tb_PrecondicionesTOC" ToRole="Tb_Resultados" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC" FromRole="Tb_PrecondicionesTOC" ToRole="Tb_ActividadesBeneficiarios" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios1" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1" FromRole="Tb_PrecondicionesTOC" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <EntityType Name="Tb_Resultados">
+          <Key>
+            <PropertyRef Name="ID_resultado" />
+          </Key>
+          <Property Name="ID_resultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_ActividadesSecundarias" Relationship="CompassionDBModel.FK_Tb_Resultados_Tb_ActividadesSecundarias" FromRole="Tb_Resultados" ToRole="Tb_ActividadesSecundarias" />
+          <NavigationProperty Name="Tb_PrecondicionesTOC" Relationship="CompassionDBModel.FK_Tb_PrecondicionesTOC_Tb_Resultados" FromRole="Tb_Resultados" ToRole="Tb_PrecondicionesTOC" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Resultados" FromRole="Tb_Resultados" ToRole="Tb_ActividadesBeneficiarios" />
+        </EntityType>
+        <Association Name="FK_Tb_ActividadesPrincipales_Tb_Categorias">
+          <End Type="CompassionDBModel.Tb_Categorias" Role="Tb_Categorias" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CompassionDBModel.Tb_ActividadesPrincipales" Role="Tb_ActividadesPrincipales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Categorias">
+              <PropertyRef Name="ID_categoria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesSecundarias_Tb_ActividadesPrincipales">
+          <End Type="CompassionDBModel.Tb_ActividadesPrincipales" Role="Tb_ActividadesPrincipales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CompassionDBModel.Tb_ActividadesSecundarias" Role="Tb_ActividadesSecundarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Resultados_Tb_ActividadesSecundarias">
+          <End Type="CompassionDBModel.Tb_ActividadesSecundarias" Role="Tb_ActividadesSecundarias" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CompassionDBModel.Tb_Resultados" Role="Tb_Resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Principal>
+            <Dependent Role="Tb_Resultados">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_Categorias_Tb_EjesEstrategicos">
+          <End Type="CompassionDBModel.Tb_EjesEstrategicos" Role="Tb_EjesEstrategicos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CompassionDBModel.Tb_Categorias" Role="Tb_Categorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_EjesEstrategicos">
+              <PropertyRef Name="ID_eje" />
+            </Principal>
+            <Dependent Role="Tb_Categorias">
+              <PropertyRef Name="ID_eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_PrecondicionesTOC_Tb_Resultados">
+          <End Type="CompassionDBModel.Tb_Resultados" Role="Tb_Resultados" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CompassionDBModel.Tb_PrecondicionesTOC" Role="Tb_PrecondicionesTOC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Resultados">
+              <PropertyRef Name="ID_resultado" />
+            </Principal>
+            <Dependent Role="Tb_PrecondicionesTOC">
+              <PropertyRef Name="ID_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tb_ActividadesBeneficiarios">
+          <Key>
+            <PropertyRef Name="ID_actividadBeneficiario" />
+          </Key>
+          <Property Name="ID_actividadBeneficiario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalBeneficiaryID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FCPID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_eje" Type="Int32" Nullable="false" />
+          <Property Name="ID_categoria" Type="Int32" Nullable="false" />
+          <Property Name="ID_actividadPrincipal" Type="Int32" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="ID_resultado" Type="Int32" Nullable="false" />
+          <Property Name="ID_precondicionTOC" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comentarios" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tb_ActividadesPrincipales" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_ActividadesPrincipales" />
+          <NavigationProperty Name="Tb_ActividadesSecundarias" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_ActividadesSecundarias" />
+          <NavigationProperty Name="Tb_Beneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_Beneficiarios" />
+          <NavigationProperty Name="Tb_Categorias" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_Categorias" />
+          <NavigationProperty Name="Tb_CDI" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_CDI" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_CDI" />
+          <NavigationProperty Name="Tb_EjesEstrategicos" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_EjesEstrategicos" />
+          <NavigationProperty Name="Tb_PrecondicionesTOC" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_PrecondicionesTOC" />
+          <NavigationProperty Name="Tb_Resultados" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Resultados" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_Resultados" />
+          <NavigationProperty Name="Tb_Categorias1" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Categorias1" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_Categorias" />
+          <NavigationProperty Name="Tb_PrecondicionesTOC1" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_PrecondicionesTOC" />
+          <Property Name="ID_usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tb_Usuarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Usuarios" FromRole="Tb_ActividadesBeneficiarios" ToRole="Tb_Usuarios" />
+          <Property Name="ID_plantilla" Type="Int32" Nullable="false" />
+          <Property Name="parent" Type="Int32" Nullable="false" />
+          <Property Name="masiva" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesPrincipales">
+          <End Type="CompassionDBModel.Tb_ActividadesPrincipales" Role="Tb_ActividadesPrincipales" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesPrincipales">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_actividadPrincipal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_ActividadesSecundarias">
+          <End Type="CompassionDBModel.Tb_ActividadesSecundarias" Role="Tb_ActividadesSecundarias" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_ActividadesSecundarias">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_actividadSecundaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios">
+          <End Type="CompassionDBModel.Tb_Beneficiarios" Role="Tb_Beneficiarios" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Beneficiarios">
+              <PropertyRef Name="LocalBeneficiaryID" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="LocalBeneficiaryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias">
+          <End Type="CompassionDBModel.Tb_Categorias" Role="Tb_Categorias" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Categorias">
+              <PropertyRef Name="ID_categoria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_CDI">
+          <End Type="CompassionDBModel.Tb_CDI" Role="Tb_CDI" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_CDI">
+              <PropertyRef Name="FCPID" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="FCPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_EjesEstrategicos">
+          <End Type="CompassionDBModel.Tb_EjesEstrategicos" Role="Tb_EjesEstrategicos" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_EjesEstrategicos">
+              <PropertyRef Name="ID_eje" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC">
+          <End Type="CompassionDBModel.Tb_PrecondicionesTOC" Role="Tb_PrecondicionesTOC" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_PrecondicionesTOC">
+              <PropertyRef Name="ID_precondicionTOC" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Resultados">
+          <End Type="CompassionDBModel.Tb_Resultados" Role="Tb_Resultados" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Resultados">
+              <PropertyRef Name="ID_resultado" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_resultado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Categorias1">
+          <End Type="CompassionDBModel.Tb_Categorias" Role="Tb_Categorias" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Categorias">
+              <PropertyRef Name="ID_categoria" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_PrecondicionesTOC1">
+          <End Type="CompassionDBModel.Tb_PrecondicionesTOC" Role="Tb_PrecondicionesTOC" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_PrecondicionesTOC">
+              <PropertyRef Name="ID_precondicionTOC" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_precondicionTOC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tb_ActividadesDetalles">
+          <Key>
+            <PropertyRef Name="ID_detalleActividad" />
+          </Key>
+          <Property Name="ID_detalleActividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_recurso" Type="Int32" Nullable="false" />
+          <Property Name="ValorTexto" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValorNumerico" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ValorEntero" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Original" Type="Boolean" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="ID_actividadBeneficiario" Type="Int32" Nullable="false" />
+          <Property Name="Parametro" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValorMultipleOpciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValorMax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ValorMin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ID_plantilla" Type="Int32" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_Usuarios">
+          <Key>
+            <PropertyRef Name="ID_usuario" />
+          </Key>
+          <Property Name="ID_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_completo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Roles" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="URL_image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CDI" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Usuarios" FromRole="Tb_Usuarios" ToRole="Tb_ActividadesBeneficiarios" />
+          <Property Name="PeriodosActivos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicioPeriodos" Type="DateTime" Precision="3" />
+          <Property Name="FechaFinalPeriodos" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Tb_ActividadesBeneficiarios_Tb_Usuarios">
+          <End Type="CompassionDBModel.Tb_Usuarios" Role="Tb_Usuarios" Multiplicity="1" />
+          <End Type="CompassionDBModel.Tb_ActividadesBeneficiarios" Role="Tb_ActividadesBeneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tb_Usuarios">
+              <PropertyRef Name="ID_usuario" />
+            </Principal>
+            <Dependent Role="Tb_ActividadesBeneficiarios">
+              <PropertyRef Name="ID_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tb_Plantillas">
+          <Key>
+            <PropertyRef Name="ID_plantilla" />
+          </Key>
+          <Property Name="ID_plantilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_usuario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tb_InscripcionActividad">
+          <Key>
+            <PropertyRef Name="ID_inscripcion" />
+          </Key>
+          <Property Name="ID_inscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalBeneficiaryID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FCPID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_usuario" Type="Int32" Nullable="false" />
+          <Property Name="ID_actividadSecundaria" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompassionDBModelStoreContainer" CdmEntityContainer="CompassionDBEntities">
+          <EntitySetMapping Name="Tb_Beneficiarios">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_Beneficiarios">
+              <MappingFragment StoreEntitySet="Tb_Beneficiarios">
+                <ScalarProperty Name="BeneficiaryICPID" ColumnName="BeneficiaryICPID" />
+                <ScalarProperty Name="LocalBeneficiaryID" ColumnName="LocalBeneficiaryID" />
+                <ScalarProperty Name="ChronicIllnesses" ColumnName="ChronicIllnesses" />
+                <ScalarProperty Name="TypeOfVocational_TechTraining" ColumnName="TypeOfVocational_TechTraining" />
+                <ScalarProperty Name="FormalEducationLevel" ColumnName="FormalEducationLevel" />
+                <ScalarProperty Name="BeneficiaryConfessesJesusasSavior" ColumnName="BeneficiaryConfessesJesusasSavior" />
+                <ScalarProperty Name="SponsorshipStatus" ColumnName="SponsorshipStatus" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Tutor_ImplementerName" ColumnName="Tutor_ImplementerName" />
+                <ScalarProperty Name="Classroom_CDPRAgeGroup" ColumnName="Classroom_CDPRAgeGroup" />
+                <ScalarProperty Name="Household" ColumnName="Household" />
+                <ScalarProperty Name="BeneficiaryStatus" ColumnName="BeneficiaryStatus" />
+                <ScalarProperty Name="BeneficiaryCluster" ColumnName="BeneficiaryCluster" />
+                <ScalarProperty Name="State_Province" ColumnName="State_Province" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_CDI">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_CDI">
+              <MappingFragment StoreEntitySet="Tb_CDI">
+                <ScalarProperty Name="FCPID" ColumnName="FCPID" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Dpto" ColumnName="Dpto" />
+                <ScalarProperty Name="GpsLatitud" ColumnName="GpsLatitud" />
+                <ScalarProperty Name="GpsLongitud" ColumnName="GpsLongitud" />
+                <ScalarProperty Name="Denominacion" ColumnName="Denominacion" />
+                <ScalarProperty Name="NombreCDI" ColumnName="NombreCDI" />
+                <ScalarProperty Name="NombreIglesia" ColumnName="NombreIglesia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Cluster" ColumnName="Cluster" />
+                <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_ActividadesPrincipales">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_ActividadesPrincipales">
+              <MappingFragment StoreEntitySet="Tb_ActividadesPrincipales">
+                <ScalarProperty Name="ID_categoria" ColumnName="ID_categoria" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_actividadPrincipal" ColumnName="ID_actividadPrincipal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_ActividadesSecundarias">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_ActividadesSecundarias">
+              <MappingFragment StoreEntitySet="Tb_ActividadesSecundarias">
+                <ScalarProperty Name="Periodicidad" ColumnName="Periodicidad" />
+                <ScalarProperty Name="ID_actividadPrincipal" ColumnName="ID_actividadPrincipal" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre_corto" ColumnName="Nombre_corto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_actividadSecundaria" ColumnName="ID_actividadSecundaria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Categorias">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_Categorias">
+              <MappingFragment StoreEntitySet="Tb_Categorias">
+                <ScalarProperty Name="ID_eje" ColumnName="ID_eje" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_categoria" ColumnName="ID_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_EjesEstrategicos">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_EjesEstrategicos">
+              <MappingFragment StoreEntitySet="Tb_EjesEstrategicos">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_eje" ColumnName="ID_eje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_PrecondicionesTOC">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_PrecondicionesTOC">
+              <MappingFragment StoreEntitySet="Tb_PrecondicionesTOC">
+                <ScalarProperty Name="ID_resultado" ColumnName="ID_resultado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_precondicionTOC" ColumnName="ID_precondicionTOC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Resultados">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_Resultados">
+              <MappingFragment StoreEntitySet="Tb_Resultados">
+                <ScalarProperty Name="ID_actividadSecundaria" ColumnName="ID_actividadSecundaria" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID_resultado" ColumnName="ID_resultado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_ActividadesBeneficiarios">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_ActividadesBeneficiarios">
+              <MappingFragment StoreEntitySet="Tb_ActividadesBeneficiarios">
+                <ScalarProperty Name="masiva" ColumnName="masiva" />
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="ID_plantilla" ColumnName="ID_plantilla" />
+                <ScalarProperty Name="ID_usuario" ColumnName="ID_usuario" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Fecha_actualizacion" ColumnName="Fecha_actualizacion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ID_precondicionTOC" ColumnName="ID_precondicionTOC" />
+                <ScalarProperty Name="ID_resultado" ColumnName="ID_resultado" />
+                <ScalarProperty Name="ID_actividadSecundaria" ColumnName="ID_actividadSecundaria" />
+                <ScalarProperty Name="ID_actividadPrincipal" ColumnName="ID_actividadPrincipal" />
+                <ScalarProperty Name="ID_categoria" ColumnName="ID_categoria" />
+                <ScalarProperty Name="ID_eje" ColumnName="ID_eje" />
+                <ScalarProperty Name="FCPID" ColumnName="FCPID" />
+                <ScalarProperty Name="LocalBeneficiaryID" ColumnName="LocalBeneficiaryID" />
+                <ScalarProperty Name="ID_actividadBeneficiario" ColumnName="ID_actividadBeneficiario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_ActividadesDetalles">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_ActividadesDetalles">
+              <MappingFragment StoreEntitySet="Tb_ActividadesDetalles">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="ID_plantilla" ColumnName="ID_plantilla" />
+                <ScalarProperty Name="ValorMin" ColumnName="ValorMin" />
+                <ScalarProperty Name="ValorMax" ColumnName="ValorMax" />
+                <ScalarProperty Name="ValorMultipleOpciones" ColumnName="ValorMultipleOpciones" />
+                <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+                <ScalarProperty Name="ID_actividadBeneficiario" ColumnName="ID_actividadBeneficiario" />
+                <ScalarProperty Name="ID_actividadSecundaria" ColumnName="ID_actividadSecundaria" />
+                <ScalarProperty Name="Original" ColumnName="Original" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ValorEntero" ColumnName="ValorEntero" />
+                <ScalarProperty Name="ValorNumerico" ColumnName="ValorNumerico" />
+                <ScalarProperty Name="ValorTexto" ColumnName="ValorTexto" />
+                <ScalarProperty Name="ID_recurso" ColumnName="ID_recurso" />
+                <ScalarProperty Name="ID_detalleActividad" ColumnName="ID_detalleActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Usuarios">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_Usuarios">
+              <MappingFragment StoreEntitySet="Tb_Usuarios">
+                <ScalarProperty Name="FechaFinalPeriodos" ColumnName="FechaFinalPeriodos" />
+                <ScalarProperty Name="FechaInicioPeriodos" ColumnName="FechaInicioPeriodos" />
+                <ScalarProperty Name="PeriodosActivos" ColumnName="PeriodosActivos" />
+                <ScalarProperty Name="CDI" ColumnName="CDI" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="URL_image" ColumnName="URL_image" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID_usuario" ColumnName="ID_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_Plantillas">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_Plantillas">
+              <MappingFragment StoreEntitySet="Tb_Plantillas">
+                <ScalarProperty Name="ID_usuario" ColumnName="ID_usuario" />
+                <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID_plantilla" ColumnName="ID_plantilla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tb_InscripcionActividad">
+            <EntityTypeMapping TypeName="CompassionDBModel.Tb_InscripcionActividad">
+              <MappingFragment StoreEntitySet="Tb_InscripcionActividad">
+                <ScalarProperty Name="ID_actividadSecundaria" ColumnName="ID_actividadSecundaria" />
+                <ScalarProperty Name="ID_usuario" ColumnName="ID_usuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FCPID" ColumnName="FCPID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="LocalBeneficiaryID" ColumnName="LocalBeneficiaryID" />
+                <ScalarProperty Name="ID_inscripcion" ColumnName="ID_inscripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

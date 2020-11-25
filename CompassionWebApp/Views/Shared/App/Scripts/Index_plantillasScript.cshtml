@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+
+}
+<script>
+    $(document).ready(function () {
+
+        
+    });
+
+    $(document).on("click", '.deletelink', function (event) {
+        var hrf=$(this).attr('href');
+        event.preventDefault();
+        Swal.fire({
+            title: "Estas seguro de eliminar este registro?",
+            text: "Esta acción no puede revertirse.",
+        icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminalo!"
+        }).then(function (result) {
+            if (result.value) {
+             
+                window.location.href = hrf;
+
+
+            }
+        });
+
+    });
+</script>
+   
