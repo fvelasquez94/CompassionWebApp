@@ -40,9 +40,19 @@ namespace CompassionWebApp.Controllers.App
 
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
+                List<Tb_ActividadesBeneficiarios> tb_ActividadesBeneficiarios = new List<Tb_ActividadesBeneficiarios>();
 
-                var tb_ActividadesBeneficiarios = db.Tb_ActividadesBeneficiarios.Where(c=>  c.parent==0 && (c.Fecha>=filtrostartdate && c.Fecha<=filtroenddate)).Include(t => t.Tb_ActividadesPrincipales).Include(t => t.Tb_ActividadesSecundarias).Include(t => t.Tb_Beneficiarios).Include(t => t.Tb_Categorias).Include(t => t.Tb_CDI).Include(t => t.Tb_EjesEstrategicos).Include(t => t.Tb_PrecondicionesTOC).Include(t => t.Tb_Resultados);
-                return View(tb_ActividadesBeneficiarios.ToList());
+                if (activeuser.Roles.Contains("Administrador"))
+                {
+                    tb_ActividadesBeneficiarios = db.Tb_ActividadesBeneficiarios.Where(c => c.parent == 0 && (c.Fecha >= filtrostartdate && c.Fecha <= filtroenddate)).Include(t => t.Tb_ActividadesPrincipales).Include(t => t.Tb_ActividadesSecundarias).Include(t => t.Tb_Beneficiarios).Include(t => t.Tb_Categorias).Include(t => t.Tb_CDI).Include(t => t.Tb_EjesEstrategicos).Include(t => t.Tb_PrecondicionesTOC).Include(t => t.Tb_Resultados).ToList();
+
+                }
+                else {
+                    tb_ActividadesBeneficiarios = db.Tb_ActividadesBeneficiarios.Where(c => c.FCPID==activeuser.CDI && c.parent == 0 && (c.Fecha >= filtrostartdate && c.Fecha <= filtroenddate)).Include(t => t.Tb_ActividadesPrincipales).Include(t => t.Tb_ActividadesSecundarias).Include(t => t.Tb_Beneficiarios).Include(t => t.Tb_Categorias).Include(t => t.Tb_CDI).Include(t => t.Tb_EjesEstrategicos).Include(t => t.Tb_PrecondicionesTOC).Include(t => t.Tb_Resultados).ToList();
+
+                }
+
+                return View(tb_ActividadesBeneficiarios);
             }
             else
             {

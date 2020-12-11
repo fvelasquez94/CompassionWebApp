@@ -353,7 +353,11 @@
     <Content Include="Content\assets\css\style.bundle.min.css" />
     <Content Include="Content\assets\css\style.bundle.rtl.css" />
     <Content Include="Content\assets\css\style.bundle.rtl.min.css" />
+    <Content Include="Content\assets\images\login1-min.png" />
+    <Content Include="Content\assets\images\login2-min.png" />
+    <Content Include="Content\assets\images\logos\logobottom-min.png" />
     <Content Include="Content\assets\images\logos\logo_compassion.svg" />
+    <Content Include="Content\assets\images\logos\logotop-min.png" />
     <Content Include="Content\assets\js\pages\crud\datatables\advanced\column-rendering.js" />
     <Content Include="Content\assets\js\pages\crud\datatables\advanced\column-rendering.min.js" />
     <Content Include="Content\assets\js\pages\crud\datatables\advanced\column-visibility.js" />
@@ -2623,6 +2627,7 @@
     <Content Include="Views\Reportes\ActividadesBeneficiario.cshtml" />
     <Content Include="Views\Reportes\ActividadesBeneficiario_det.cshtml" />
     <Content Include="Views\Reportes\ActividadesBeneficiario_detalle.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

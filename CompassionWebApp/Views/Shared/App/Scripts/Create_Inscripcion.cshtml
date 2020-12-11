@@ -110,7 +110,7 @@
 
 
         if (flag == 1) {
-            alert("Complete todos los campos");
+            toastr.info("Valida todos los campos");
         } else {
                 $.ajax
             ({
@@ -126,12 +126,13 @@
                     if (result.mensaje == "success") {
                         var url2 = '@Url.Action("Index", "Inscripciones")';
                         window.location.href = url2;
+                        toastr.success("Datos guardados exitosamente");
                     } else {
-                        alert("algo salio mal")
+                        toastr.warning("Algo salio mal");
                     }
                 },
                 error: function () {
-                    alert("algo salio mal..")
+                    toastr.warning("Algo salio mal");
                 },
                 });
         }

@@ -124,7 +124,8 @@
         if (ID_Secundaria == 0 || ID_Secundaria == "0") { flag = 1; }
 
         if (flag == 1) {
-            alert("Complete todos los campos");
+        
+            toastr.info("Valida todos los campos");
         } else {
                 $.ajax
             ({
@@ -147,11 +148,11 @@
                         url2 = url2.replace('ID_ACT', result.id_actividadBeneficiario);
                         window.location.href = url2;
                     } else {
-                        alert("algo salio mal")
+                        toastr.warning("Algo salio mal");
                     }
                 },
                 error: function () {
-                    alert("algo salio mal..")
+                    toastr.warning("Algo salio mal");
                 },
                 });
         }

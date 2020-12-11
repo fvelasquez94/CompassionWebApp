@@ -14,51 +14,59 @@
             <!--begin::Signin-->
             <div class="login-form">
                 <!--begin::Form-->
-    
-                    
-@using (Html.BeginForm("Log_in", "Auth", FormMethod.Post, new { id = "", @class = "form" }))
-{
-                    <!--begin::Title-->
-                    <div class="pb-5 pb-lg-15">
-                        <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Bienvenido/a</h3>
-                    </div>
-                    <!--begin::Title-->
-                    <!--begin::Form group-->
-                    <div class="form-group">
-                        <label class="font-size-h6 font-weight-bolder text-dark">Correo</label>
-                        <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="text" name="email" autocomplete="off" />
-                    </div>
-                    <!--end::Form group-->
-                    <!--begin::Form group-->
-                    <div class="form-group">
-                        <div class="d-flex justify-content-between mt-n5">
-                            <label class="font-size-h6 font-weight-bolder text-dark pt-5">Contraseña</label>
-                            @*<a href="~/Content/custom/pages/login/login-4/forgot.html" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5">Olvidaste tu contraseña?</a>*@
-                        </div>
-                        <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
-                    </div>
-                    <!--end::Form group-->
-                    <!--begin::Action-->
-                    <div class="pb-lg-0 pb-5">
-                        <button type="submit" class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg">Iniciar sesión
-                        </button>
-                    </div>
-                    <!--end::Action-->
+
+
+                @using (Html.BeginForm("Log_in", "Auth", FormMethod.Post, new { id = "", @class = "form" }))
+        {
+            <!--begin::Title-->
+            <div class="pb-5 pb-lg-15">
+                
+                <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">MAPES - Monitoreo de Actividades Programáticas de El Salvador</h3>
+            </div>
+            <!--begin::Title-->
+            <!--begin::Form group-->
+            <div class="form-group">
+                <label class="font-size-h6 font-weight-bolder text-dark">Correo</label>
+                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="text" name="email" autocomplete="off" />
+            </div>
+            <!--end::Form group-->
+            <!--begin::Form group-->
+            <div class="form-group">
+                <div class="d-flex justify-content-between mt-n5">
+                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">Contraseña</label>
+                    @*<a href="~/Content/custom/pages/login/login-4/forgot.html" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5">Olvidaste tu contraseña?</a>*@
+                </div>
+                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
+            </div>
+            <!--end::Form group-->
+            <!--begin::Action-->
+            <div class="pb-lg-0 pb-5">
+                <button type="submit" class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg">
+                    Iniciar sesión
+                </button>
+            </div>
+            <!--end::Action-->
 }
                 <!--end::Form-->
             </div>
-            <!--end::Signin-->
+            <!--end::Signin-->       
+            <label style="font-size:10px;margin-top:30px">
+                Sistema de Monitoreo de Actividades Programáticas de El Salvador es propiedad de Compassion International en El Salvador. Derechos reservados.
+            </label>
+               
+          
         </div>
         <!--end::Wrapper-->
+ 
     </div>
     <!--begin::Content-->
     <!--begin::Aside-->
-    <div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right">
-        <div class="login-conteiner bgi-no-repeat bgi-position-x-right bgi-position-y-bottom" style="background-image: url(../Content/assets/media/svg/illustrations/login-visual-4.svg);">
+    <div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right" style="background-image: url(../Content/assets/images/login2-min.png); background-size: cover;">
+        <div class="" >
             <!--begin::Aside title-->
             <!--begin::Logo-->
             <a href="#" class="login-logo pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest display5 display1-lg text-white">
-                <img src="~/Content/assets/images/logos/logo_compassion.svg" class="max-h-70px" alt="" />
+                <img src="~/Content/assets/images/logos/logo_compassion.svg" style="background-color:#0094ff" class="max-h-70px" alt="" />
             </a>
 
         </div>

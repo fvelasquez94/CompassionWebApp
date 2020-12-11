@@ -140,7 +140,9 @@ namespace CompassionWebApp.Controllers.App
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-
+                List<Tb_CDI> lstCDI = new List<Tb_CDI>();
+                lstCDI = (from a in db.Tb_CDI select a).ToList();
+                ViewBag.lstCDI = lstCDI;
                 Tb_Usuarios tb_Usuarios = db.Tb_Usuarios.Find(id);
                 return View(tb_Usuarios);
             }

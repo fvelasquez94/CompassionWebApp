@@ -1,8 +1,9 @@
 ﻿@model CompassionWebApp.Models.Tb_Usuarios
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit - Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<CompassionWebApp.Models.Tb_CDI> lstCDI = (List<CompassionWebApp.Models.Tb_CDI>)ViewBag.lstCDI;
 }
 
 <!--begin::Content-->
@@ -36,7 +37,7 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-12">Contraseña</label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -70,7 +71,11 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Roles, new { htmlAttributes = new { @class = "form-control" } })
+                                <select class="form-control" name="Roles" id="Roles">
+                                    @if (Model.Roles == "Administrador") {<option value="Administrador" selected>Administrador</option> } else {<option value="Administrador">Administrador</option> } 
+                                    @if (Model.Roles == "CDI") {   <option value="CDI" selected>CDI</option>} else {  <option value="CDI">CDI</option> }
+                                  
+                                </select>
                                 @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -85,7 +90,17 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.CDI, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.CDI, new { htmlAttributes = new { @class = "form-control" } })
+                                <select class="form-control" name="CDI" id="CDI">
+                                    @foreach (var item in lstCDI)
+                                    {
+                                        if (item.FCPID == Model.CDI)
+                                        {
+                                            <option value="@item.FCPID" selected>@item.NombreCDI</option>
+                                        }
+                                        else { <option value="@item.FCPID">@item.NombreCDI</option>}
+                            
+}
+                                </select>
                                 @Html.ValidationMessageFor(model => model.CDI, "", new { @class = "text-danger" })
                             </div>
                         </div>

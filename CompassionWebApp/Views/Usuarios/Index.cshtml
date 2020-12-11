@@ -83,10 +83,10 @@
                                     @Html.DisplayFor(modelItem => item.PeriodosActivos)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FechaInicioPeriodos)
+                                    @item.FechaInicioPeriodos.Value.ToShortDateString()
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.FechaFinalPeriodos)
+                                    @item.FechaFinalPeriodos.Value.ToShortDateString()
                                 </td>
                                 <td>
                                     @if (item.ID_usuario != 1)

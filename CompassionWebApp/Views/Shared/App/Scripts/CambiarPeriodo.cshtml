@@ -20,7 +20,8 @@
         if (fechainicial > fechafinal) { flag = 1;}
 
         if (flag == 1) {
-            alert("Compruebe formato o validez de fechas");
+        
+            toastr.info("Compruebe formato o validez de fechas");
         } else {
 
      
@@ -36,14 +37,16 @@
                     }),
                     success: function (result) {
                         if (result.mensaje == "success") {
-                            alert("Periodo actualizado exitosamente")
+                          
+                            toastr.success("Periodo actualizado exitosamente");
                             window.location.reload(true);
                         } else {
-                            alert("algo salio mal")
+    
+                            toastr.warning("Algo salio mal");
                         }
                     },
                     error: function () {
-                        alert("algo salio mal..")
+                        toastr.warning("Algo salio mal");
                     },
                 });
         }

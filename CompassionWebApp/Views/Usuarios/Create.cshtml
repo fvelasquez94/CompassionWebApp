@@ -1,7 +1,7 @@
 ﻿@model CompassionWebApp.Models.Tb_Usuarios
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create - Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<CompassionWebApp.Models.Tb_CDI> lstCDI = (List<CompassionWebApp.Models.Tb_CDI>)ViewBag.lstCDI;
 }
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <label class="control-label col-md-12">Contraseña</label>
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
                                 @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-10">
                                     <select class="form-control" name="Roles" id="Roles">
-                                        <option value="Admin">Administrador</option>
+                                        <option value="Administrador">Administrador</option>
                                         <option value="CDI">CDI</option>
                                     </select>
                                 </div>

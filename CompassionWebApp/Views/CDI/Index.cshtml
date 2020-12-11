@@ -45,7 +45,7 @@
 
                 <!--end::Notice-->
                 <!--begin::Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">CDIs</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Iglesias</h5>
                 <!--end::Title-->
                 <!--begin::Separator-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
@@ -94,8 +94,8 @@
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                     <div class="card-title">
                         <h3 class="card-label">
-                            CDIs
-                            <span class="d-block text-muted pt-2 font-size-sm">Listado de CDIs cargados desde API SalesForce</span>
+                            Iglesias
+                            <span class="d-block text-muted pt-2 font-size-sm">Listado de Iglesias cargados desde API SalesForce</span>
                         </h3>
                     </div>
                     <div class="card-toolbar">
@@ -115,7 +115,7 @@
                                 </span>Exportar
                             </button>
                             <!--begin::Dropdown Menu-->
-                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                            @*<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                 <!--begin::Navigation-->
                                 <ul class="navi flex-column navi-hover py-2">
                                     <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">Selecciona:</li>
@@ -146,7 +146,7 @@
                                     </li>
                                 </ul>
                                 <!--end::Navigation-->
-                            </div>
+                            </div>*@
                             <!--end::Dropdown Menu-->
                         </div>
                         <!--end::Dropdown-->
@@ -161,7 +161,7 @@
                         <table class="table table-bordered table-checkable" id="kt_datatable">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                
                                     <th>FCP ID</th>
                                     <th>Direccion</th>
                                     <th>Ciudad</th>
@@ -183,7 +183,7 @@
                     foreach (var items in Model)
                     {
                         <tr>
-                            <td></td>
+                            
                             <td>@items.FCPID</td>
                             <td>@items.Direccion</td>
                             <td>@items.Ciudad</td>

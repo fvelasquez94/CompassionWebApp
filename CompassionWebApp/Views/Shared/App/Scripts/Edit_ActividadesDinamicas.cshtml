@@ -145,7 +145,7 @@
 
 
         if (flag == 1) {
-            alert("Complete todos los campos");
+            toastr.info("Valida todos los campos");
         } else {
             $.ajax
                 ({
@@ -166,11 +166,11 @@
                             window.location.reload(true);
 
                         } else {
-                            alert("algo salio mal")
+                            toastr.warning("Algo salio mal");
                         }
                     },
                     error: function () {
-                        alert("algo salio mal..")
+                        toastr.warning("Algo salio mal");
                     },
                 });
         }
