@@ -78,7 +78,7 @@ namespace CompassionWebApp.Controllers.Default
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-                ViewBag.ID_resultado = new SelectList(db.Tb_Resultados, "ID_resultado", "Codigo");
+                ViewBag.ID_resultado = new SelectList(db.Tb_Resultados, "ID_resultado", "Nombre");
                 return View();
 
             }
@@ -137,7 +137,7 @@ namespace CompassionWebApp.Controllers.Default
 
                 Tb_PrecondicionesTOC tb_PrecondicionesTOC = db.Tb_PrecondicionesTOC.Find(id);
 
-                ViewBag.ID_resultado = new SelectList(db.Tb_Resultados, "ID_resultado", "Codigo", tb_PrecondicionesTOC.ID_resultado);
+                ViewBag.ID_resultado = new SelectList(db.Tb_Resultados, "ID_resultado", "Nombre", tb_PrecondicionesTOC.ID_resultado);
                 return View(tb_PrecondicionesTOC);
 
             }

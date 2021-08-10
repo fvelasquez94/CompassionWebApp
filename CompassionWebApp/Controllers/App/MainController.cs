@@ -61,7 +61,7 @@ namespace CompassionWebApp.Controllers.App
                 lstactividadesTotal = (from p in db.Tb_ActividadesBeneficiarios
                                 where (p.FCPID == activeuser.CDI && p.parent == 0 && (p.Fecha >= filtrostartdate && p.Fecha <= filtroenddate))
                                 group p by p.ID_actividadSecundaria  into g
-                                              select new actividadesGrafica { id = g.Key, nombre = g.FirstOrDefault().Tb_ActividadesSecundarias.Nombre_corto, cantidadtotal=g.Count(),cantidadfinalizadas= g.Where(c => c.ID_resultado != 1).Count(), codificacion="" }).OrderBy(c=>c.id).ToList();
+                                              select new actividadesGrafica { id = g.Key, nombre = g.FirstOrDefault().Tb_ActividadesSecundarias.Nombre_corto, cantidadtotal=g.Count(),cantidadfinalizadas= g.Where(c => c.ID_resultado != 1).Count(), codificacion="" }).ToList();
                 ViewBag.lstgrafica = lstactividadesTotal;
 
 

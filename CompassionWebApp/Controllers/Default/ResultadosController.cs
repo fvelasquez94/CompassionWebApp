@@ -77,7 +77,7 @@ namespace CompassionWebApp.Controllers.Default
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-                ViewBag.ID_actividadSecundaria = new SelectList(db.Tb_ActividadesSecundarias, "ID_actividadSecundaria", "Codigo");
+                ViewBag.ID_actividadSecundaria = new SelectList(db.Tb_ActividadesSecundarias, "ID_actividadSecundaria", "Nombre");
                 return View();
 
             }
@@ -134,7 +134,7 @@ namespace CompassionWebApp.Controllers.Default
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
                 Tb_Resultados tb_Resultados = db.Tb_Resultados.Find(id);
-                ViewBag.ID_actividadSecundaria = new SelectList(db.Tb_ActividadesSecundarias, "ID_actividadSecundaria", "Codigo", tb_Resultados.ID_actividadSecundaria);
+                ViewBag.ID_actividadSecundaria = new SelectList(db.Tb_ActividadesSecundarias, "ID_actividadSecundaria", "Nombre", tb_Resultados.ID_actividadSecundaria);
                 return View(tb_Resultados);
             }
             else

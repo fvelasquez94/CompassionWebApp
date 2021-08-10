@@ -2,8 +2,10 @@
 using CompassionWebApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace CompassionWebApp.Controllers
@@ -89,6 +91,46 @@ namespace CompassionWebApp.Controllers
                 //Validamos cookies
                 cls_cookies.Check_cookies(email, password, rememberme);
 
+
+                //encriptamos conexion
+                try
+                {
+                    //Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+                    //ConfigurationSection section = config.GetSection("connectionStrings");
+                    //if (!section.SectionInformation.IsProtected)
+                    //{
+                    //    section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+                    //    config.Save();
+                    //}
+
+
+
+                    //para desencriptar
+                    Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+                    ConfigurationSection section = config.GetSection("connectionStrings");
+                    if (section.SectionInformation.IsProtected)
+                    {
+                        section.SectionInformation.UnprotectSection();
+                        config.Save();
+                    }
+
+
+                    //obtenemos informacion de loggin
+                    //host name
+                    var s = Request.ServerVariables["REMOTE_HOST"]; 
+                    //computer name
+                    var ss = Request.ServerVariables["SERVER_NAME"];
+                    //Windows account del usuario.
+                     var sss = Request.ServerVariables["AUTH_USER"];
+
+                    //IP
+                    string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                    var ipcliente = GetIp();
+                }
+                catch (Exception ex){
+                }
+      
+
                 return RedirectToAction("Inicio", "Main", null);
 
 
@@ -96,5 +138,17 @@ namespace CompassionWebApp.Controllers
 
             return RedirectToAction("Login", "Auth", new { access = false, logpage = 1 });
         }
+
+        public string GetIp()
+        {
+            string ip = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            }
+            return ip;
+        }
     }
+
+    
 }

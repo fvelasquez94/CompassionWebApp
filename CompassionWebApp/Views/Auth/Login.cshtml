@@ -17,10 +17,10 @@
 
 
                 @using (Html.BeginForm("Log_in", "Auth", FormMethod.Post, new { id = "", @class = "form" }))
-        {
+    {
             <!--begin::Title-->
             <div class="pb-5 pb-lg-15">
-                
+
                 <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">MAPES - Monitoreo de Actividades Programáticas de El Salvador</h3>
             </div>
             <!--begin::Title-->
@@ -38,6 +38,10 @@
                 </div>
                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg border-0" type="password" name="password" autocomplete="off" />
             </div>
+            if (TempData["advertencia"] != null)
+{
+            <label class="badge badge-warning">@TempData["advertencia"]</label>
+}
             <!--end::Form group-->
             <!--begin::Action-->
             <div class="pb-lg-0 pb-5">
@@ -48,6 +52,7 @@
             <!--end::Action-->
 }
                 <!--end::Form-->
+
             </div>
             <!--end::Signin-->       
             <label style="font-size:10px;margin-top:30px">

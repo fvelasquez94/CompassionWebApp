@@ -78,7 +78,7 @@ namespace CompassionWebApp.Controllers.Default
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-                ViewBag.ID_eje = new SelectList(db.Tb_EjesEstrategicos, "ID_eje", "Codigo");
+                ViewBag.ID_eje = new SelectList(db.Tb_EjesEstrategicos, "ID_eje", "Nombre");
                 return View();
 
             }
@@ -135,7 +135,7 @@ namespace CompassionWebApp.Controllers.Default
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
                 Tb_Categorias tb_Categorias = db.Tb_Categorias.Find(id);
-                ViewBag.ID_eje = new SelectList(db.Tb_EjesEstrategicos, "ID_eje", "Codigo", tb_Categorias.ID_eje);
+                ViewBag.ID_eje = new SelectList(db.Tb_EjesEstrategicos, "ID_eje", "Nombre", tb_Categorias.ID_eje);
                 return View(tb_Categorias);
 
             }

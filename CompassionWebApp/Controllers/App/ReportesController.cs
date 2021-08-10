@@ -299,7 +299,15 @@ namespace CompassionWebApp.Controllers.App
                 int i = 0;
 
                 //connetionString = "Data Source=servername;Initial Catalog=PUBS;User ID=sa;Password=yourpassword";
-                connection = new SqlConnection(db.Database.Connection.ConnectionString);
+            
+
+                SqlConnectionStringBuilder strbldr = new SqlConnectionStringBuilder();
+                strbldr.DataSource = db.Database.Connection.DataSource;
+                strbldr.InitialCatalog = db.Database.Connection.Database;
+                strbldr.IntegratedSecurity = true;
+                strbldr.ColumnEncryptionSetting = SqlConnectionColumnEncryptionSetting.Enabled;
+
+                connection = new SqlConnection(strbldr.ConnectionString);
 
                 connection.Open();
                 command.Connection = connection;
@@ -308,17 +316,18 @@ namespace CompassionWebApp.Controllers.App
 
                 param = new SqlParameter("@IDPlantilla", ID_plantilla);
                 param.Direction = ParameterDirection.Input;
-                param.DbType = DbType.Int32;
+                param.SqlDbType = SqlDbType.Int;
                 command.Parameters.Add(param);
 
                 param = new SqlParameter("@ID_ActividadSecundaria", ID_actividad);
                 param.Direction = ParameterDirection.Input;
-                param.DbType = DbType.Int32;
+                param.SqlDbType = SqlDbType.Int;
                 command.Parameters.Add(param);
 
                 param = new SqlParameter("@CDI", activeuser.CDI);
                 param.Direction = ParameterDirection.Input;
-                param.DbType = DbType.String;
+                param.SqlDbType = SqlDbType.NVarChar;
+                param.Size = 100;
                 command.Parameters.Add(param);
 
 

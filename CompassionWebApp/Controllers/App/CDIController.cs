@@ -87,7 +87,7 @@ namespace CompassionWebApp.Controllers.App
 
                 var beneficiarios = (from a in db.Tb_Beneficiarios where (a.BeneficiaryICPID == activeuser.CDI) select a).Count();
                 var actividades = (from a in db.Tb_ActividadesBeneficiarios where (a.FCPID == activeuser.CDI) select a).Count();
-                var ultimaactividad = (from a in db.Tb_ActividadesBeneficiarios where (a.FCPID == activeuser.CDI) select a.Fecha).OrderByDescending(c=>c).Take(1).FirstOrDefault();
+                var ultimaactividad = (from a in db.Tb_ActividadesBeneficiarios where (a.FCPID == activeuser.CDI) select a.Fecha).Take(1).FirstOrDefault();
 
                 ViewBag.beneficiarios = beneficiarios;
                 ViewBag.actividades = actividades;

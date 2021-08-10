@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -80,6 +81,7 @@ namespace CompassionWebApp.Controllers.App
 
         public class SelectItemOptionString {
             public string ID { get; set; }
+            [Column(TypeName = "varchar(500)")]
             public string Descripcion { get; set; }
         }
         public class SelectItemOption
@@ -111,11 +113,11 @@ namespace CompassionWebApp.Controllers.App
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-                ViewBag.LocalBeneficiaryID = (from b in  db.Tb_Beneficiarios where (b.BeneficiaryICPID == activeuser.CDI) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.LocalBeneficiaryID = (from b in  db.Tb_Beneficiarios where (b.BeneficiaryICPID == activeuser.CDI) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).ToList();
                 //ViewBag.ID_eje = (from b in db.Tb_EjesEstrategicos where (b.Activo == true) select new SelectItemOption { ID = b.ID_eje, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
-                ViewBag.FCPID = (from b in db.Tb_CDI where (b.FCPID==activeuser.CDI) select new SelectItemOptionString { ID = b.FCPID, Descripcion = b.NombreCDI }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.FCPID = (from b in db.Tb_CDI where (b.FCPID==activeuser.CDI) select new SelectItemOptionString { ID = b.FCPID, Descripcion = b.NombreCDI }).ToList();
 
-                ViewBag.plantillas = (from b in db.Tb_Plantillas select new SelectItemOption { ID = b.ID_plantilla, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.plantillas = (from b in db.Tb_Plantillas select new SelectItemOption { ID = b.ID_plantilla, Descripcion = b.Nombre }).ToList();
 
                 return View();
             }
@@ -152,11 +154,11 @@ namespace CompassionWebApp.Controllers.App
                 ViewBag.filtrofechastart = filtrostartdate.ToShortDateString();
                 ViewBag.filtrofechaend = filtroenddate.ToShortDateString();
 
-                ViewBag.LocalBeneficiaryID = (from b in db.Tb_Beneficiarios where (b.BeneficiaryICPID == activeuser.CDI) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.LocalBeneficiaryID = (from b in db.Tb_Beneficiarios where (b.BeneficiaryICPID == activeuser.CDI) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).ToList();
                 //ViewBag.ID_eje = (from b in db.Tb_EjesEstrategicos where (b.Activo == true) select new SelectItemOption { ID = b.ID_eje, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
-                ViewBag.FCPID = (from b in db.Tb_CDI where (b.FCPID == activeuser.CDI) select new SelectItemOptionString { ID = b.FCPID, Descripcion = b.NombreCDI }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.FCPID = (from b in db.Tb_CDI where (b.FCPID == activeuser.CDI) select new SelectItemOptionString { ID = b.FCPID, Descripcion = b.NombreCDI }).ToList();
 
-                ViewBag.plantillas = (from b in db.Tb_Plantillas select new SelectItemOption { ID = b.ID_plantilla, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.plantillas = (from b in db.Tb_Plantillas select new SelectItemOption { ID = b.ID_plantilla, Descripcion = b.Nombre }).ToList();
 
                 var inscripcionesdistict = (from a in db.Tb_InscripcionActividad where (a.FCPID == activeuser.CDI) select a.ID_actividadSecundaria).Distinct().ToArray();
 
@@ -226,7 +228,7 @@ namespace CompassionWebApp.Controllers.App
                 var result = new { mensaje = "success", id_actividadBeneficiario = nuevaActividadBeneficiario.ID_actividadBeneficiario };
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch
+            catch (Exception ex)
             {
                 var result = new { mensaje = "error" };
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -393,6 +395,8 @@ namespace CompassionWebApp.Controllers.App
                 var query = "";
                 var parametro = (from a in db.Tb_ActividadesDetalles where (a.ID_actividadBeneficiario == ID_actividadBeneficiaro && a.ID_detalleActividad == id) select a).FirstOrDefault();
                 var headermasivo = (from a in db.Tb_ActividadesBeneficiarios where (a.parent == parametro.ID_actividadBeneficiario) select a.ID_actividadBeneficiario).ToArray();
+                var detallesupdate = (from f in db.Tb_ActividadesDetalles where (headermasivo.Contains(f.ID_actividadBeneficiario)) select f).ToList();
+
                 var str = String.Join(",", headermasivo);
                 if (tipo_recurso == 1)
                 {//texto
@@ -401,10 +405,19 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorTexto={0} where Orden={1} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
 
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach(var item in detallesupdate)
+                        {
+                            item.ValorTexto = value;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+                    db.SaveChanges();
+                 
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
+                    //db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
                 }
                 if (tipo_recurso == 2)
                 {//numerico decimal
@@ -413,10 +426,20 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorNumerico={0} where Orden={1} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
+               
 
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, valuedec, parametro.Orden);
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach (var item in detallesupdate)
+                        {
+                            item.ValorNumerico = valuedec;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    //db.Database.ExecuteSqlCommand(query, valuedec, parametro.Orden);
                 }
                 if (tipo_recurso == 3)
                 {//numerico entero 
@@ -424,10 +447,18 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorEntero={0} where Orden={1} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
-
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, valueint, parametro.Orden);
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach (var item in detallesupdate)
+                        {
+                            item.ValorEntero = valueint;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    //db.Database.ExecuteSqlCommand(query, valueint, parametro.Orden);
                 }
                 if (tipo_recurso == 4)
                 {//fecha 
@@ -435,10 +466,18 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorTexto={0} where Orden={1} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
-
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach (var item in detallesupdate)
+                        {
+                            item.ValorTexto = value;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    //db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
                 }
                 if (tipo_recurso == 5)
                 {//lista
@@ -446,10 +485,18 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorMultipleOpciones={0} where Orden={1} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
-
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach (var item in detallesupdate)
+                        {
+                            item.ValorMultipleOpciones = value;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    //db.Database.ExecuteSqlCommand(query, value, parametro.Orden);
                 }
                 if (tipo_recurso == 6)
                 {//rango
@@ -458,10 +505,21 @@ namespace CompassionWebApp.Controllers.App
                     query = "update Tb_ActividadesDetalles set ValorMax={0}, ValorMin={1} where Orden={2} and ID_actividadBeneficiario in (" + str + ")";
 
                     db.Entry(parametro).State = EntityState.Modified;
-                    db.SaveChanges();
-
+                   
                     //actualizamos masivo
-                    db.Database.ExecuteSqlCommand(query, valueint2,valueint, parametro.Orden);
+                    if (detallesupdate.Count > 0)
+                    {
+                        foreach (var item in detallesupdate)
+                        {
+
+                            item.ValorMin = valueint;
+                            item.ValorMax = valueint2;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+
+                    db.SaveChanges();
+                    // db.Database.ExecuteSqlCommand(query, valueint2,valueint, parametro.Orden);
                 }
 
 
@@ -561,7 +619,7 @@ namespace CompassionWebApp.Controllers.App
         {
             try
             {
-                var categorias = (from b in db.Tb_Categorias where (b.ID_eje==eje && b.Activo==true) select new SelectItemOption { ID = b.ID_categoria, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_Categorias where (b.ID_eje==eje && b.Activo==true) select new SelectItemOption { ID = b.ID_categoria, Descripcion = b.Nombre }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -575,7 +633,7 @@ namespace CompassionWebApp.Controllers.App
         {
             try
             {
-                var categorias = (from b in db.Tb_ActividadesPrincipales where (b.ID_categoria == categoria && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadPrincipal, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_ActividadesPrincipales where (b.ID_categoria == categoria && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadPrincipal, Descripcion = b.Nombre }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -592,7 +650,7 @@ namespace CompassionWebApp.Controllers.App
             {
                 var actividadesInscritas = (from a in db.Tb_InscripcionActividad where a.LocalBeneficiaryID.Contains(id_beneficiario) select a.ID_actividadSecundaria).ToArray();
 
-                var categorias = (from b in db.Tb_ActividadesSecundarias where (actividadesInscritas.Contains(b.ID_actividadPrincipal) && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadSecundaria, Descripcion = b.Nombre_corto }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_ActividadesSecundarias where (actividadesInscritas.Contains(b.ID_actividadPrincipal) && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadSecundaria, Descripcion = b.Nombre_corto }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -610,7 +668,7 @@ namespace CompassionWebApp.Controllers.App
             {
                 var actividadesInscritas = (from a in db.Tb_InscripcionActividad where (a.FCPID==CDI && a.ID_actividadSecundaria==id_actividad) select a.LocalBeneficiaryID).ToArray();
 
-                var categorias = (from b in db.Tb_Beneficiarios where (actividadesInscritas.Contains(b.LocalBeneficiaryID)) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_Beneficiarios where (actividadesInscritas.Contains(b.LocalBeneficiaryID)) select new SelectItemOptionString { ID = b.LocalBeneficiaryID, Descripcion = b.AccountName }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -625,7 +683,7 @@ namespace CompassionWebApp.Controllers.App
         {
             try
             {
-                var categorias = (from b in db.Tb_ActividadesSecundarias where (b.ID_actividadPrincipal == actividadPrincipal && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadSecundaria, Descripcion = b.Nombre_corto }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_ActividadesSecundarias where (b.ID_actividadPrincipal == actividadPrincipal && b.Activo == true) select new SelectItemOption { ID = b.ID_actividadSecundaria, Descripcion = b.Nombre_corto }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -640,7 +698,7 @@ namespace CompassionWebApp.Controllers.App
         {
             try
             {
-                var categorias = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -654,7 +712,7 @@ namespace CompassionWebApp.Controllers.App
         {
             try
             {
-                var categorias = (from b in db.Tb_PrecondicionesTOC where (b.ID_resultado == resultado && b.Activo == true) select new SelectItemOption { ID = b.ID_precondicionTOC, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                var categorias = (from b in db.Tb_PrecondicionesTOC where (b.ID_resultado == resultado && b.Activo == true) select new SelectItemOption { ID = b.ID_precondicionTOC, Descripcion = b.Nombre }).ToList();
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string result = javaScriptSerializer.Serialize(categorias);
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -756,7 +814,7 @@ namespace CompassionWebApp.Controllers.App
 
                 }
                 ViewBag.detalles = detalles;
-                ViewBag.ID_resultado = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == tb_ActividadesBeneficiarios.ID_actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.ID_resultado = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == tb_ActividadesBeneficiarios.ID_actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).ToList();
                 ViewBag.plantilla = plantilla;
 
                 return View(tb_ActividadesBeneficiarios);
@@ -803,7 +861,7 @@ namespace CompassionWebApp.Controllers.App
 
                 }
                 ViewBag.detalles = detalles;
-                ViewBag.ID_resultado = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == tb_ActividadesBeneficiarios.ID_actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).OrderBy(b => b.Descripcion).ToList();
+                ViewBag.ID_resultado = (from b in db.Tb_Resultados where (b.ID_actividadSecundaria == tb_ActividadesBeneficiarios.ID_actividadSecundaria && b.Activo == true) select new SelectItemOption { ID = b.ID_resultado, Descripcion = b.Nombre }).ToList();
                 ViewBag.plantilla = plantilla;
 
                 var inscripcionesdistict = (from a in db.Tb_ActividadesBeneficiarios where (a.parent== id || a.ID_actividadBeneficiario==id) select a.LocalBeneficiaryID).Distinct().ToArray();

@@ -76,20 +76,20 @@
           </Key>
           <Property Name="BeneficiaryICPID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LocalBeneficiaryID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ChronicIllnesses" Type="varchar" MaxLength="500" />
-          <Property Name="TypeOfVocational_TechTraining" Type="varchar(max)" />
-          <Property Name="FormalEducationLevel" Type="varchar" MaxLength="150" />
+          <Property Name="ChronicIllnesses" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="TypeOfVocational_TechTraining" Type="varchar(max)" Nullable="false" />
+          <Property Name="FormalEducationLevel" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="BeneficiaryConfessesJesusasSavior" Type="bit" Nullable="false" />
-          <Property Name="SponsorshipStatus" Type="varchar" MaxLength="50" />
+          <Property Name="SponsorshipStatus" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AccountName" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Age" Type="int" />
-          <Property Name="Tutor_ImplementerName" Type="varchar" MaxLength="500" />
-          <Property Name="Classroom_CDPRAgeGroup" Type="varchar" MaxLength="50" />
-          <Property Name="Household" Type="varchar" MaxLength="500" />
-          <Property Name="BeneficiaryStatus" Type="varchar" MaxLength="50" />
-          <Property Name="BeneficiaryCluster" Type="varchar" MaxLength="50" />
-          <Property Name="State_Province" Type="varchar" MaxLength="250" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Tutor_ImplementerName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Classroom_CDPRAgeGroup" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Household" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="BeneficiaryStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BeneficiaryCluster" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State_Province" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Tb_Categorias">
           <Key>
@@ -450,20 +450,20 @@
           </Key>
           <Property Name="BeneficiaryICPID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LocalBeneficiaryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ChronicIllnesses" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="TypeOfVocational_TechTraining" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FormalEducationLevel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ChronicIllnesses" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeOfVocational_TechTraining" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FormalEducationLevel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BeneficiaryConfessesJesusasSavior" Type="Boolean" Nullable="false" />
-          <Property Name="SponsorshipStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SponsorshipStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AccountName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="Tutor_ImplementerName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Classroom_CDPRAgeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Household" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="BeneficiaryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BeneficiaryCluster" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="State_Province" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Tutor_ImplementerName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Classroom_CDPRAgeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Household" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BeneficiaryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BeneficiaryCluster" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State_Province" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tb_ActividadesBeneficiarios" Relationship="CompassionDBModel.FK_Tb_ActividadesBeneficiarios_Tb_Beneficiarios" FromRole="Tb_Beneficiarios" ToRole="Tb_ActividadesBeneficiarios" />
         </EntityType>
         <EntityType Name="Tb_CDI">

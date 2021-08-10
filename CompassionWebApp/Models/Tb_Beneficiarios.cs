@@ -29,7 +29,7 @@ namespace CompassionWebApp.Models
         public string SponsorshipStatus { get; set; }
         public string AccountName { get; set; }
         public string Gender { get; set; }
-        public Nullable<int> Age { get; set; }
+        public int Age { get; set; }
         public string Tutor_ImplementerName { get; set; }
         public string Classroom_CDPRAgeGroup { get; set; }
         public string Household { get; set; }
